@@ -43,7 +43,7 @@ $("a[rel=homeImage_group]").fancybox({
 			</a>
 
 				<ul class="dropdown-menu dropdown-menu-right">
-					<li><a href="">Refresh</a></li>
+					<li><a ng-click="load()">Refresh</a></li>
 					<li><a href="">Listview Settings</a></li>
 				</ul></li>
 		</ul>

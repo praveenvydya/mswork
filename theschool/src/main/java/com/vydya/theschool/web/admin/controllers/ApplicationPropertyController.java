@@ -46,8 +46,8 @@ public class ApplicationPropertyController {
 		Properties properties = new Properties();
 		try{
 		
-			List<AdminProperty> propList = applicationProperties.getAllProperties();	
-			model.addAttribute("properties", propList);
+			//List<AdminProperty> propList = applicationProperties.getAllProperties();	
+			//model.addAttribute("properties", propList);
 		return WebConstants.VIEW_NAME_VIEW_PROPERTIES;
 		}
 		
