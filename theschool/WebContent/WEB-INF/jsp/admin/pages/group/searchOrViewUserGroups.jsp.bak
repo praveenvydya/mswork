@@ -1,0 +1,146 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- <%@ taglib prefix="ts" uri="http://www.ts.com/tags"%> --%>
+<%@ taglib prefix="ts" uri="/WEB-INF/ts-tags.tld" %>
+<%@ page import="com.vydya.theschool.web.constants.WebConstants" %> 
+<%@ page import="com.vydya.theschool.common.constants.TSConstants" %>
+<script type="text/javascript" src="<spring:message code="static.application.name"/>/javascript/jquery.tablesorter.js"></script>
+<script defer="defer">
+<c:choose>
+<c:when test="${empty searchResults}">
+	
+</c:when>
+<c:otherwise>
+$(document).ready(function() 
+	    { 
+		   
+	        	$("#sectionsTable").tablesorter({widthFixed: true, widgets: ['applyStyles']});
+	    	
+	    } 
+		);
+</c:otherwise>
+</c:choose>
+
+</script>
+<script language="javascript">
+
+function onSubmit()
+{
+	var chkCount = 0;
+	$('#sectionsTable tr').each(function(){
+		$(this).find('td:first').each(function(){	
+			      if(($(this).children().eq(0).is(':checked'))){
+			    	  chkCount = chkCount+1;
+			      }
+	     })
+	}) ;
+	if(document.pressed == 'Edit')
+	{	if(chkCount==0){
+			alert('<spring:message code="group.selection.required.common" />');
+			return false;
+		}else if(chkCount>1){
+			alert('<spring:message code="group.selection.single.required" />');
+			return false;
+		}
+		document.getElementById("editActionName").value='EditView';
+		document.GroupActionsForm.action ="<%=TSConstants.ACTION_EDIT_GROUP%>.htm";
+	}
+    else  if(document.pressed == 'Delete')  
+    {    
+    	if(chkCount==0){
+			alert('<spring:message code="group.selection.required.common" />');
+			return false;
+		}else if(chkCount>1){
+			alert('<spring:message code="group.selection.required.common" />');
+			return false;
+		}
+    	var selectedGroup='';
+    	$('#sectionsTable tr').each(function(){
+    		$(this).find('td:first').each(function(){	
+    		      if(($(this).children().eq(0).is(':checked'))){
+    		    	  selectedGroup = $(this).next("td").text();
+    		      }
+    	     })
+    	}) ;
+    	var answer =confirm('<spring:message code="group.delete.confirmation" />'.replace("this",selectedGroup)); 
+   	 	if(!answer)
+       	 	return false; 
+    	 document.GroupActionsForm.action ="<%=TSConstants.ACTION_DELETE_GROUP%>.htm" ;
+    } 
+    //Since the default focus was on Add, when user hits enter key redirecting to Add page. hence gone below approach
+    else  if(document.pressed == 'Add')  {
+            document.getElementById("addActionName").value='AddView';
+   			document.GroupAddForm.action ="<%=TSConstants.ACTION_ADD_GROUP%>.htm" ;
+   			document.GroupAddForm.submit();
+    }
+    
+    return true;
+}
+</script>
+		<div id="tabularData">
+				<div id="titleBar">
+				    <div class="title">View and Add Groups </div>
+				   
+					<div class="addSectionBttn">
+					<form:form method="POST"  commandName="GroupForm" name="GroupAddForm" onsubmit="return onSubmit('default')">
+						<form:hidden path="actionName" id="addActionName"/>
+					<ts:button validateAction="true" action="<%=WebConstants.ADD_GROUP_ACTION%>" type="button" name="Add" cssClass="large clButton yellow" title="Add Group" value ="Add" onClick="document.pressed=this.name;onSubmit();" />
+					</form:form>
+					</div>
+				</div>
+				
+				<c:if test='${null!=success_key }'>
+					<div class="successMsg"><spring:message code="${success_key}" /></div>
+					<c:remove scope="session" var ="success_key"/>
+				</c:if>
+				<div id="SearchResults">
+					
+					<form:form method="POST"  commandName="GroupForm" name="GroupActionsForm" onsubmit="return onSubmit('default')">
+					<form:hidden path="actionName" id="editActionName"/>
+					<c:choose>
+					<c:when test="${empty searchResults}">
+						<div class="alertMsg">No Records Found</div>
+					</c:when>
+					<c:otherwise>
+					
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" id="sectionsTable">
+					<thead>
+					  <tr>
+						<th width="8%">&nbsp;</th>
+						<th width="27%">Group Name </th>
+						<th width="44%">Group Description </th>
+						<th width="23%">Status </th>
+					  </tr>
+					  </thead>
+                     <c:forEach var="group" items="${searchResults}"> 
+                      <tr>
+						<td width="8%" style="text-align:center"><form:radiobutton  id="${group.groupId}" value="${group.groupId}" path="selectedGroupId"/></td>
+						<td>${group.groupName}</td>
+						<td>${group.groupDesc}</td>
+						
+							<c:choose> 
+								<c:when test="${1 eq group.groupStatus}"> 
+								<td class="activeStatus">
+			    					Active
+			    					</td>
+								</c:when> 
+								<c:otherwise> 
+								<td>
+				    				Inactive</td>
+				    			</c:otherwise> 
+			    			</c:choose> 
+					  </tr>
+                     </c:forEach> 
+					</table>
+					</c:otherwise>
+					</c:choose>
+					<div id="sectionBttns">
+					<ts:button validateAction="true" action="<%=WebConstants.EDIT_GROUP_ACTION%>"  type="submit" cssClass="large clButton green"    name="Edit"   title="Edit"  value="Edit"   onClick="document.pressed=this.name"/>
+					<ts:button validateAction="true" action="<%=WebConstants.DELETE_GROUP_ACTION%>"  type="submit" cssClass="large clButton green"  name="Delete" title="Delete" value="Delete"  onClick="document.pressed=this.name"/>
+					</div>
+				
+			</form:form>
+				</div>
+			</div>
+			

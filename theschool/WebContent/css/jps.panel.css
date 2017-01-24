@@ -1,0 +1,360 @@
+/* jpsSplitter */
+.jps-splitter {
+	overflow: hidden;
+	border: 1px solid transparent;
+	position: relative;
+}
+/* Split bar's class when the jpsSplitter is with horizontal orientation */
+.jps-splitter-splitbar-vertical {
+	border: 1px solid transparent;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+	cursor: e-resize;
+	cursor: col-resize;
+	position: absolute;
+}
+/* Split bar's mouse over state */
+.jps-splitter-splitbar-hover {
+	background-color: transparent;
+}
+/* Split bar's class when the jpsSplitter is with horizontal orientation. */
+.jps-splitter-splitbar-horizontal {
+	position: absolute;
+	/* border: 1px solid transparent; */
+	border-left-width: 0px;
+	border-right-width: 0px;
+	cursor: n-resize;
+	cursor: row-resize;
+}
+/* This class is applied to the splitter when it's dragged to it's max left/right boundary */
+.jps-splitter-splitbar-invalid {
+	background: #464646 !important;
+}
+/* This class is added to split bar's collapse button when the splitter is with vectical orientation. */
+.jps-splitter-collapse-button-horizontal {
+	cursor: pointer;
+	width: 45px;
+	height: 5px;
+}
+/* This class is added to split bar's collapse button when the splitter is with horizontal orientation. */
+.jps-splitter-collapse-button-vertical {
+	cursor: pointer;
+	width: 5px;
+	height: 45px;
+}
+/* This class is added when the user disable the splitter. */
+.jps-splitter-splitbar-collapsed {
+	cursor: default;
+}
+/* Applied to the jpsSplitter panels. */
+.jps-splitter-panel {
+	border: none;
+	outline: none;
+	position: absolute;
+	overflow: hidden;
+}
+/* This class is added to a nested splitter.*/
+.jps-splitter-nested,.jps-splitter-panel-nested {
+	border: none;
+	overflow: hidden;
+}
+
+/*applied to containers to set a background and border color. Tabs, NavigationBar, Calendar content.*/
+.jps-widget-content {
+	-ms-touch-action: none;
+	-moz-background-clip: padding;
+	-webkit-text-size-adjust: none;
+	background-clip: padding-box;
+	-webkit-background-clip: padding-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-family: Verdana, Arial, sans-serif;
+	font-style: normal;
+	font-size: 13px;
+	border-color: #c7c7c7;
+	background: #fff;
+}
+/*applied to header areas. Tabs, Menu, Window, Calendar.*/
+.jps-widget-header {
+	-ms-touch-action: none;
+	-moz-background-clip: padding;
+	-webkit-text-size-adjust: none;
+	background-clip: padding-box;
+	-webkit-background-clip: padding-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	border-color: #c5c5c5;
+	background: #e8e8e8;
+}
+
+.jps-fill-state-normal {
+	-ms-touch-action: none;
+	font-family: Verdana, Arial, sans-serif;
+	font-style: normal;
+	font-size: 13px;
+	border-color: #aaa;
+	background: #efefef;
+}
+
+.jps-fill-state-hover {
+	border-color: #999;
+	background: #e8e8e8;
+}
+
+.jps-fill-state-pressed {
+	border-color: #999;
+	background: url("../images/vgrabber.gif") no-repeat scroll center center
+		#D1D1D1;
+}
+
+.jps-fill-state-focus {
+	border-color: #555;
+}
+
+.jps-fill-state-disabled {
+	cursor: default;
+	color: #000;
+	opacity: .55;
+	filter: Alpha(Opacity = 45);
+}
+
+.jps-widget .jps-grid-cell,.jps-widget .jps-grid-column-header,.jps-widget .jps-grid-group-cell
+	{
+	border-color: #aaa;
+}
+
+.jps-widget .jps-grid-column-menubutton,.jps-widget .jps-grid-column-sortascbutton,.jps-widget .jps-grid-column-sortdescbutton,.jps-widget .jps-grid-column-filterbutton
+	{
+	background-color: transparent;
+	border-color: #aaa;
+}
+
+#rightSplitter {
+	width: 100%;
+	box-shadow: inset 0 0 2px #888888;
+	-moz-box-shadow: inset 0 0 2px #888888;
+	height: 100%;
+}
+
+.contentHeader { /* margin:2px 0px; */
+	box-shadow: 0 0px 2px #888888;
+	height: 38px;
+	background-color: #e5e5e5;
+}
+
+.pnl {
+	padding: 5px;
+}
+
+.contentPanel {
+	overflow: scroll;
+	width: 99%;
+	height: 100%;
+	margin: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*jpstree Style*/
+.jps-tree {
+	left: 100%;
+	right: 0;
+	float: none;
+	margin: 0px;
+	border-style: solid;
+	border-width: 1px;
+	padding: 0px;
+	overflow: hidden;
+	text-align: left;
+	outline: none;
+	white-space: nowrap;
+	line-height: 14px !important;
+}
+/*applied to the jpsTree root UL element.*/
+.jps-tree-dropdown-root {
+	left: 100%;
+	padding: 0px 5px 0px 5px;
+	right: 0;
+	display: block;
+	float: none;
+	background-color: transparent;
+	border-style: solid;
+	border-width: 0px;
+	border-color: #fff;
+	text-align: left;
+	outline: none;
+	white-space: nowrap;
+	margin: 0px;
+}
+
+.jps-tree-dropdown-root-rtl {
+	padding: 0px 5px 0px 0px;
+	text-align: right;
+	float: right;
+	margin: 0px;
+}
+
+/*applied to the jpsTree UL elements.*/
+.jps-tree-dropdown {
+	left: 100%;
+	margin: 0px;
+	padding: 0px 0px 0px 10px;
+	right: 0;
+	display: block;
+	float: none;
+	background-color: transparent;
+	border-style: solid;
+	border-width: 0px;
+	border-color: transparent;
+	text-align: left;
+	outline: none;
+}
+
+.jps-tree-dropdown-rtl {
+	padding: 0px 0px 0px 0px;
+	text-align: right;
+}
+
+/*applied to a tree item.*/
+.jps-tree-item {
+	text-indent: 0;
+	list-style: none;
+	padding: 3px;
+	margin: 0px;
+	float: none;
+	overflow: hidden;
+	left: 100%;
+	right: 0;
+	text-align: left;
+	cursor: default;
+	text-decoration: none;
+}
+/*applied to the jpsTree LI elements.*/
+.jps-tree-item-li {
+	text-indent: 0;
+	background-color: transparent;
+	border: 0px solid transparent;
+	list-style: none;
+	left: 100%;
+	right: 0;
+	text-align: left;
+	outline: none;
+	margin: 0px;
+	margin-top: 1px;
+	padding: 0px;
+}
+/*applied to the last LI elements in an UL element.*/
+.jps-tree-item-u-last {
+	margin: 0px 0px 0px 0px;
+}
+/*applied to a tree item when the mouse is over the item.*/
+.jps-tree-item-hover {
+	color: inherit;
+	right: 0;
+	padding: 3px;
+	margin: 0px;
+	list-style: none;
+	left: 100%;
+	cursor: pointer;
+	text-decoration: none;
+}
+/*applied to a tree item when the item is selected.*/
+.jps-tree-item-selected {
+	color: inherit;
+	right: 0;
+	padding: 3px;
+	margin: 0px;
+	list-style: none;
+	left: 100%;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.jps-tree-item-rtl {
+	text-align: right;
+}
+
+.jps-tree-item-li-rtl {
+	text-align: right;
+}
+/*applied to the anchor element of a tree item.*/
+.jps-tree-item a:link,.jps-tree-item a:visited {
+	text-indent: 0;
+	background-color: transparent;
+	border: 0px solid transparent;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	float: none;
+	overflow: hidden;
+	left: 100%;
+	color: inherit;
+	right: 0;
+	text-align: left;
+	cursor: pointer;
+	text-decoration: none;
+	outline: none;
+}
+
+.jps-tree-item-selected,.jps-tree-item-hover a:hover {
+	color: inherit;
+}
+
+.jps-tree-item-selected,.jps-tree-item-hover a:visited {
+	color: inherit;
+}
+
+/*applied to a tree item when the item is disabled.*/
+.jps-tree-item-disabled {
+	
+}
+/*applied to a tree item when it has sub items and is collapsed. Displays an arrow icon next to the item.*/
+.jps-tree-item-arrow-collapse,.jps-tree-item-arrow-collapse-hover {
+	padding-right: 0px;
+	width: 17px;
+	height: 17px;
+	background-image: url(images/icon-right.png);
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.jps-tree-item-arrow-collapse-rtl,.jps-tree-item-arrow-collapse-hover-rtl
+	{
+	background-image: url(images/icon-left.png);
+}
+
+/*applied to a tree item when it has sub items and is expanded. Displays an arrow icon next to the item.*/
+.jps-tree-item-arrow-expand,.jps-tree-item-arrow-expand-hover {
+	padding-right: 0px;
+	width: 17px;
+	height: 17px;
+	background-image: url(images/icon-down.png);
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+/*applied to the tree when it is disabled.*/
+.jps-tree-disabled {
+	cursor: default;
+}
+/*applied to the anchor elements in a tree when it is disabled.*/
+.jps-tree-disabled a:link {
+	cursor: default;
+	text-decoration: none;
+}
+
+.jps-tree-disabled a:visited {
+	cursor: default;
+	text-decoration: none;
+}
+
+.jps-tree-disabled a:hover {
+	cursor: default;
+}

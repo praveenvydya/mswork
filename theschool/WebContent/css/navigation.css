@@ -1,0 +1,297 @@
+@font-face {
+	font-family: "Segoe UI";
+	src: local("Segoe UI"), url("/shell/fonts/segoeui.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+/* 
+@font-face {
+	font-family: "Segoe UI Light";
+	src: local("Segoe UI Light"), url("/shell/fonts/segoeuil.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Segoe UI Semibold";
+	src: local("Segoe UI Semibold"), url("/shell/fonts/seguisb.ttf");
+	font-weight: normal;
+	font-style: normal;
+} */
+
+div.bodyHeader {
+	/* height: 35px; */
+	/* min-height: 35px;
+	min-width: 995px; */
+	width: 100%;
+	z-index: 100;
+	/* position: relative;
+	display: inline-table; */
+}
+
+div.headerFixedHeight {
+	height: 35px !important;
+	min-height: 35px !important;
+	top: 0px !important;
+}
+
+div.headerContent {
+	font-weight: normal;
+	font-size: 13px;
+	margin: 0 auto;
+	/* min-width: 960px; */
+	text-align: left;
+	line-height: 35px;
+	position: relative;
+	z-index: 20;
+	/* height: 35px;
+	background-color: #F0F1F4; */
+}
+
+.headerContent a {
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.headerContent #shellLogoArea {
+	float: left;
+	margin-right: 16px;
+	height: 35px;
+	width: 32px;
+}
+
+.headerContent #shellLogoArea #shellLogo {
+	height: 32px;
+	width: 32px;
+	position: absolute;
+	top: 16px;
+	left: 0;
+	background: url("../images/shell/XboxLogo.png") no-repeat center center;
+}
+
+.headerContent .navigationArea {
+	float: left;
+	height: 35px;
+	z-index: 30;
+	overflow: hidden;
+}
+
+.headerContent .navigationArea ul.navigationElements {
+	display: inline-block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	/* font-family: "Segoe UI Semibold", Arial, Sans-Serif; */
+}
+
+.headerContent .navigationArea ul.navigationElements li {
+	float: left;
+	list-style: none;
+	text-align: left;
+	line-height: 35px;
+	color: #FFFFFF;
+    cursor: pointer;
+    text-transform: capitalize;
+   /*  border-top: 4px solid #F0F1F4; */
+}
+.headerContent .navigationArea ul.navigationElements li:HOVER {
+	opacity:0.85;
+}
+
+.headerContent .navigationArea ul.navigationElements li:hover,.headerContent .navigationArea ul.navigationElements li:hover>a,.headerContent .navigationArea ul.navigationElements li:focus,.headerContent .navigationArea ul.navigationElements li:focus>a
+	{
+	color: white;
+	opacity:0.85;
+}
+
+.headerContent .navigationArea ul.navigationElements li a {
+	color: white;
+	display: block;
+	padding: 0px 12px;
+	text-decoration: none;
+	white-space: nowrap;
+	/* font-family: "Segoe UI Semibold",Arial,Sans-Serif; */
+}
+
+.headerContent .navigationArea ul.navigationElements li a:hover {
+	color: #fff;
+}
+
+.headerContent .navigationArea ul.navigationElements li:hover ul {
+	visibility: visible;
+}
+
+.headerContent .navigationArea ul.navigationElements li ul {
+	/* font-family: "Segoe UI", Arial, Sans-Serif; */
+min-width: 145px;
+margin: 0;
+/* padding: 0; */
+/* position: absolute; */
+background-color: #FFFFFF;
+/* visibility: hidden; */
+z-index: 200;
+  box-shadow: 0px 0px 3px 0px #4a4a4a;  
+/* top: 35px; */
+    /* border: 1px solid #E4E3E2; */
+}
+
+.headerContent .navigationArea ul.navigationElements li ul li {
+	background-color: #FFF;
+	float: none;
+	line-height: 36px;
+}
+
+.headerContent .navigationArea ul.navigationElements li ul li a {
+	color: #464646;
+	background-color: transparent;
+}
+
+.headerContent .navigationArea ul.navigationElements li ul li a:hover {
+	color: white;
+	background-color: #A3A36A;
+}
+
+.headerContent .navigationArea div#shellSearchContainer {
+	cursor: pointer;
+	font-family: "Segoe UI", Arial, Sans-Serif;
+	float: left;
+	height: 35px;
+	width: 35px;
+	position: relative;
+}
+
+.headerContent .navigationArea div#shellSearchContainer .searchIcon {
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	top: 22px;
+	right: 22px;
+	
+	background-repeat: no-repeat;
+	background-position: center center;
+	z-index: 22;
+}
+
+.headerContent .navigationArea div#shellSearchContainer.opened,.headerContent .navigationArea div#shellSearchContainer:hover
+	{
+	background-color: #FFFFFF;
+}
+
+.headerContent .navigationArea div#shellSearchContainer #searchBoxWrapper
+	{
+	background-color: #FFFFFF;
+	cursor: default;
+	overflow: hidden;
+	position: absolute;
+	right: 35px;
+	width: 0;
+	z-index: 22;
+}
+
+.headerContent .navigationArea div#shellSearchContainer #searchTextBox {
+	background-color: white;
+	border: 0;
+	color: #6b6b6b;
+	height: 24px;
+	line-height: 24px;
+	margin-left: 10px;
+	padding: 10px;
+	width: 162px;
+}
+
+.navigationArea ul ul {
+		display: none;
+		background: #5f6975; border-radius: 0px; padding: 0;
+		position: absolute; top: 100%;
+	}
+		
+	.navigationArea ul ul li a:hover {
+		background: #4b545f;
+	}
+	
+		
+	.navigationArea ul ul ul {
+		position: absolute; left: 100%; top:0;
+	}
+	.navigationArea ul ul li a {
+		padding: 10px 15px;
+		color: #fff;
+	}	
+.navigationArea ul ul li {
+		float: none; 
+		/* border-top: 1px solid #6b727c; */
+		border-bottom: 1px solid #a0a0a0; position: relative;
+	}
+	.navigationArea ul li:hover > ul {
+		display: block;
+	}	
+	.navigationArea ul:after {
+		content: ""; clear: both; display: block;
+	}
+	
+.cl0{
+	 background: none repeat scroll 0 0 #00A8EC;
+}
+.cl1{
+	 background: none repeat scroll 0 0 #4b545f;
+}
+.cl2{
+	 background: none repeat scroll 0 0 #43B51F;
+}
+.cl3{
+	 background: none repeat scroll 0 0 #F58D00;
+}
+.cl4{
+	 background: none repeat scroll 0 0 #D32C2C;
+}
+.cl5{
+	 background: none repeat scroll 0 0 #3C5B9B;
+}
+.cl6{
+	 background: none repeat scroll 0 0 #F874A4;
+}
+.cl7{
+	 background: none repeat scroll 0 0 #FFC808;
+}
+.cl8{
+	 background: none repeat scroll 0 0 #640F6C;
+}
+.cl9{
+	 background: none repeat scroll 0 0 #00A8EC;
+} 
+
+/* .cl1,.cl2,.cl3,.cl4,.cl5,.cl6,.cl7,.cl8,.cl9,.cl10{
+	background: none repeat scroll 0 0 #E4F1E7;	
+}
+
+.cl1:hover{
+	 border-top: 4px solid #4b545f;
+}
+.cl2:hover{
+	 border-top: 4px solid #43B51F;
+}
+.cl3:hover{
+	 border-top: 4px solid #F58D00;
+}
+.cl4:hover{
+	 border-top: 4px solid #D32C2C;
+}
+.cl5:hover{
+	 border-top: 4px solid #3C5B9B;
+}
+.cl6:hover{
+	 border-top: 4px solid #F874A4;
+}
+.cl7:hover{
+	 border-top: 4px solid #FFC808;
+}
+.cl8:hover{
+	 border-top: 4px solid #640F6C;
+}
+.cl9:hover{
+	 border-top: 4px solid #00A8EC;
+}
+.cl0:hover{
+	 border-top: 4px solid #00A8EC;
+	  
+} */

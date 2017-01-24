@@ -1,0 +1,681 @@
+div.pedit-grip,.pedit-button div {
+	background-image: url('../images/pedit.png');
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px
+}
+
+.pedit-button-youtube div {
+	background-position: 0 0
+}
+
+.pedit-button-link div {
+	background-position: 0 -16px
+}
+
+.pedit-button-unlink div {
+	background-position: 0 -32px
+}
+
+.pedit-button-underline div {
+	background-position: 0 -48px
+}
+
+.pedit-button-time div {
+	background-position: 0 -64px
+}
+
+.pedit-button-table div {
+	background-position: 0 -80px
+}
+
+.pedit-button-superscript div {
+	background-position: 0 -96px
+}
+
+.pedit-button-subscript div {
+	background-position: 0 -112px
+}
+
+.pedit-button-strike div {
+	background-position: 0 -128px
+}
+
+.pedit-button-source div {
+	background-position: 0 -144px
+}
+
+.pedit-button-size div {
+	background-position: 0 -160px
+}
+
+.pedit-button-rtl div {
+	background-position: 0 -176px
+}
+
+.pedit-button-right div {
+	background-position: 0 -192px
+}
+
+.pedit-button-removeformat div {
+	background-position: 0 -208px
+}
+
+.pedit-button-quote div {
+	background-position: 0 -224px
+}
+
+.pedit-button-print div {
+	background-position: 0 -240px
+}
+
+.pedit-button-pastetext div {
+	background-position: 0 -256px
+}
+
+.pedit-button-paste div {
+	background-position: 0 -272px
+}
+
+.pedit-button-orderedlist div {
+	background-position: 0 -288px
+}
+
+.pedit-button-maximize div {
+	background-position: 0 -304px
+}
+
+.pedit-button-ltr div {
+	background-position: 0 -320px
+}
+
+.pedit-button-left div {
+	background-position: 0 -336px
+}
+
+.pedit-button-justify div {
+	background-position: 0 -352px
+}
+
+.pedit-button-italic div {
+	background-position: 0 -368px
+}
+
+.pedit-button-image div {
+	background-position: 0 -384px
+}
+
+.pedit-button-horizontalrule div {
+	background-position: 0 -400px
+}
+
+.pedit-button-format div {
+	background-position: 0 -416px
+}
+
+.pedit-button-font div {
+	background-position: 0 -432px
+}
+
+.pedit-button-emoticon div {
+	background-position: 0 -448px
+}
+
+.pedit-button-email div {
+	background-position: 0 -464px
+}
+
+.pedit-button-date div {
+	background-position: 0 -480px
+}
+
+.pedit-button-cut div {
+	background-position: 0 -496px
+}
+
+.pedit-button-copy div {
+	background-position: 0 -512px
+}
+
+.pedit-button-color div {
+	background-position: 0 -528px
+}
+
+.pedit-button-code div {
+	background-position: 0 -544px
+}
+
+.pedit-button-center div {
+	background-position: 0 -560px
+}
+
+.pedit-button-bulletlist div {
+	background-position: 0 -576px
+}
+
+.pedit-button-bold div {
+	background-position: 0 -592px
+}
+
+div.pedit-grip {
+	background-position: 0 -608px;
+	width: 10px;
+	height: 10px
+}
+
+.rtl div.pedit-grip {
+	background-position: 0 -618px;
+	width: 10px;
+	height: 10px
+}
+
+.pedit-container {
+	position: relative;
+	background: #fff;
+	border: 1px solid #d9d9d9;
+	font-size: 13px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	color: #222;
+	line-height: 1;
+	font-weight: bold;
+	/* -webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px; */
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box
+}
+
+.pedit-container,.pedit-container div,div.pedit-dropdown,div.pedit-dropdown div
+	{
+	padding: 0;
+	margin: 0;
+	/* z-index: 3 */
+}
+
+.pedit-container iframe,.pedit-container textarea {
+	line-height: 1;
+	border: 0;
+	outline: 0;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #111;
+	padding: 0;
+	margin: 5px;
+	resize: none;
+	background: #fff;
+	display: block
+}
+
+div.pedit-resize-cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #000;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	opacity: .3
+}
+
+.ie6 div.pedit-resize-cover,.ie7 div.pedit-resize-cover,.ie8 div.pedit-resize-cover
+	{
+	background: #efefef
+}
+
+.pedit-container.ie6 {
+	overflow: hidden
+}
+
+div.pedit-grip {
+	overflow: hidden;
+	width: 10px;
+	height: 10px;
+	cursor: pointer;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 3
+}
+
+.pedit-maximize {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100% !important;
+	width: 100% !important;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	z-index: 2000
+}
+
+html.pedit-maximize,body.pedit-maximize {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden
+}
+
+.ie6.pedit-maximize {
+	position: absolute
+}
+
+.pedit-maximize div.pedit-grip {
+	display: none
+}
+
+.pedit-maximize div.pedit-toolbar {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box
+}
+
+div.pedit-dropdown {
+	position: absolute;
+	border: 1px solid #ccc;
+	background: #fff;
+	color: #333;
+	z-index: 4000;
+	padding: 10px;
+	line-height: 1;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	-webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2)
+}
+
+div.pedit-dropdown a,div.pedit-dropdown a:link {
+	color: #333
+}
+
+div.pedit-dropdown form {
+	margin: 0
+}
+
+div.pedit-dropdown label {
+	display: block;
+	font-weight: bold;
+	color: #3c3c3c;
+	padding: 4px 0
+}
+
+div.pedit-dropdown input,div.pedit-dropdown textarea {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	outline: 0;
+	padding: 4px;
+	border: 1px solid #ccc;
+	border-top-color: #888;
+	margin: 0 0 .75em;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box
+}
+
+div.pedit-dropdown textarea {
+	padding: 6px
+}
+
+div.pedit-dropdown input:focus,div.pedit-dropdown textarea:focus {
+	border-color: #aaa;
+	border-top-color: #666;
+	-webkit-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1)
+}
+
+div.pedit-dropdown .button {
+	font-weight: bold;
+	color: #444;
+	padding: 6px 12px;
+	background: #ececec;
+	border: solid 1px #ccc;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	cursor: pointer;
+	margin: .3em 0 0
+}
+
+div.pedit-dropdown .button:hover {
+	background: #f3f3f3;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
+}
+
+div.pedit-font-picker,div.pedit-fontsize-picker,div.pedit-format
+	{
+	padding: 6px 0
+}
+.pedit-fontformat-option-h1{
+	font-weight: bold;
+	font-size: 26px;
+}
+.pedit-fontformat-option-h2{
+	font-weight: bold;
+	font-size: 23px;
+}
+
+.pedit-fontformat-option-h3{
+	font-weight: bold;
+	font-size: 21px;
+}
+
+.pedit-fontformat-option-h4{
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.pedit-fontformat-option-h5{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.pedit-fontformat-option-h6{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+
+div.pedit-emoticons,div.pedit-more-emoticons,div.pedit-color-picker
+	{
+	padding: 0
+}
+
+.pedit-pastetext textarea {
+	border: 1px solid #bbb;
+	width: 20em
+}
+
+.pedit-emoticons img,.pedit-more-emoticons img {
+	padding: 0;
+	cursor: pointer;
+	margin: 2px
+}
+
+.pedit-more {
+	border-top: 1px solid #bbb;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 6px 0
+}
+
+.pedit-dropdown a:hover {
+	background: #eee
+}
+
+.pedit-fontsize-option,.pedit-font-option,.pedit-format a {
+	display: block;
+	padding: 7px 10px;
+	cursor: pointer;
+	text-decoration: none;
+	color: #222
+}
+
+.pedit-fontsize-option {
+	padding: 7px 13px
+}
+
+.pedit-color-column {
+	float: left
+}
+
+.pedit-color-option {
+	display: block;
+	border: 1px solid #fff;
+	height: 10px;
+	width: 10px;
+	overflow: hidden
+}
+
+.pedit-color-option:hover {
+	border: 1px solid #333
+}
+
+div.pedit-toolbar {
+	overflow: hidden;
+	padding: 3px 5px 2px;
+	background: #f7f7f7;
+	border-bottom: 1px solid #c0c0c0;
+	line-height: 0;
+	text-align: left;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box
+}
+
+div.pedit-group {
+	display: inline-block;
+	background: #ddd;
+	margin: 1px 5px 1px 0;
+	padding: 1px;
+	border-bottom: 1px solid #aaa;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box
+}
+
+.ie6 div.pedit-group,.ie7 div.pedit-group {
+	display: inline;
+	zoom: 1
+}
+
+.pedit-button {
+	float: left;
+	cursor: pointer;
+	padding: 3px 5px;
+	width: 16px;
+	height: 20px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	text-indent: -9999px
+}
+
+.ie .pedit-button {
+	text-indent: 0
+}
+
+.ie6 .pedit-button,.ie7 .pedit-button {
+	float: none !important;
+	display: inline;
+	zoom: 1
+}
+
+.ie6 .pedit-button {
+	padding: 0
+}
+
+.ie6 .pedit-button div {
+	margin: 5px
+}
+
+.ie7 .pedit-button div {
+	margin: 5px 0
+}
+
+.pedit-button:hover,.pedit-button:active,.pedit-button.active {
+	background: #fff;
+	-webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3), inset -1px 0
+		rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3), inset -1px 0
+		rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3), inset -1px 0
+		rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.2)
+}
+
+.pedit-button:active {
+	background: #fff;
+	-webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3), inset -1px 0
+		rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.2), inset 0 0 8px
+		rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3), inset -1px 0
+		rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.2), inset 0 0 8px
+		rgba(0, 0, 0, 0.3);
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3), inset -1px 0
+		rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.2), inset 0 0 8px
+		rgba(0, 0, 0, 0.3)
+}
+
+.pedit-button.disabled:hover {
+	background: inherit;
+	cursor: default;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none
+}
+
+.pedit-button,.pedit-button div {
+	display: block
+}
+
+.pedit-button div {
+	margin: 2px 0;
+	padding: 0;
+	overflow: hidden;
+	line-height: 0;
+	font-size: 0;
+	color: transparent
+}
+
+.pedit-button.disabled div {
+	filter: alpha(opacity = 30);
+	opacity: .3
+}
+
+.text .pedit-button,.text .pedit-button div,.pedit-button.text,.pedit-button.text div,.text-icon .pedit-button,.text-icon .pedit-button div,.pedit-button.text-icon,.pedit-button.text-icon div
+	{
+	width: auto;
+	overflow: visible;
+	line-height: 16px;
+	font-size: 1em;
+	color: inherit;
+	text-indent: 0
+}
+
+.text .pedit-button div,.pedit-button.text div {
+	padding: 0 2px;
+	background: 0
+}
+
+.text-icon .pedit-button div,.pedit-button.text-icon div {
+	padding: 0 2px 0 20px
+}
+
+.rtl div.pedit-toolbar {
+	text-align: right
+}
+
+.rtl .pedit-button {
+	float: right
+}
+
+.rtl div.pedit-grip {
+	right: auto;
+	left: 0
+}
+
+
+
+
+table.contTable,table.contTable th.contTableTh, table.contTable td.contTableTd {
+    border:1px solid #DDDDDD;
+    min-width: 0.6em;
+    padding: 5px 7px;
+    text-align: left;
+    vertical-align: top;
+    /* border: 1px dotted #000; */
+	empty-cells: show;
+	border-collapse: collapse;
+	border:1px solid #DDDDDD;
+	
+}
+
+table.contTable th.contTableTh {
+    background-color: #F0F0F0;
+    font-weight: bold;
+}
+
+code:before {
+	position: absolute;
+	content: 'code:';
+	top: -1.35em;
+	left: 0
+}
+
+code {
+	margin: 1.5em;
+/* position: relative; */
+background: #eee;
+border: 1px solid #aaa;
+white-space: pre;
+padding: .25em;
+/* display: inline;
+position: inherit; */
+max-width: 685px;
+}
+
+.ie6 code,.ie7 code {
+	margin-top: 0
+}
+
+code:before,code {
+	display: block;
+	text-align: left
+}
+
+blockquote {
+	background: #fff6c7;
+border: 1px solid #aaa;
+padding: 5px;
+/* display: inline; */
+max-width: 695px;
+margin: 10px;
+display: block;
+}
+
+blockquote cite {
+	font-weight: 700;
+	display: block;
+	font-size: 1em;
+	border-bottom: 1px solid #aaa
+}
+
+.contentEditable{
+	padding: 0px;
+}

@@ -1,0 +1,159 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- <%@ taglib prefix="ts" uri="http://www.ts.com/tags"%> --%>
+<%@ taglib prefix="ts" uri="/WEB-INF/ts-tags.tld" %>
+<%@ page import="com.vydya.theschool.web.constants.WebConstants" %> 
+<%@ page import="com.vydya.theschool.common.constants.TSConstants" %> 
+<script type="text/javascript" src="<spring:message code="static.application.name"/>/javascript/jquery.tablesorter.js"></script>
+
+  	<script language="javascript">
+  	<c:choose>
+  	<c:when test="${empty searchResults}">
+  		
+  	</c:when>
+  	<c:otherwise>
+  	$(document).ready(function() 
+  	{ 
+  		$("#sectionsTable").tablesorter({widthFixed: true, widgets: ['applyStyles']});
+  	} 
+  	);
+  	</c:otherwise>
+  	</c:choose>
+function onSubmit()
+{
+	var chkCount = 0;
+	$('#sectionsTable tr').each(function(){
+		$(this).find('td:first').each(function(){	
+			      if(($(this).children().eq(0).is(':checked'))){
+			    	  chkCount = chkCount+1;
+			      }
+	     })
+	}) ;
+	if(document.pressed == 'Edit')
+	{	if(chkCount==0){
+			alert('<spring:message code="role.selection.required.common" />');
+			return false;
+		}
+	else if(chkCount>1){
+		alert('<spring:message code="role.selection.required.one" />');
+		return false;
+		}
+		document.getElementById("actionName").value='EditView';
+		document.searchForm.action ="<%=TSConstants.ACTION_EDIT_ROLE%>.htm" ;
+	}
+    else  if(document.pressed == 'Delete')  
+    {    
+    	if(chkCount==0){
+			alert('<spring:message code="role.selection.required.common" />');
+			return false;
+		}
+    	else if(chkCount>1){
+    		alert('<spring:message code="role.selection.required.one" />');
+    		return false;
+    		}
+     	var selectedRole='';
+    	$('#sectionsTable tr').each(function(){
+    		$(this).find('td:first').each(function(){	
+    		      if(($(this).children().eq(0).is(':checked'))){
+    		    	  selectedRole = $(this).next("td").text();
+    		      }
+    	     })
+    	}) ;
+    	var answer =confirm('<spring:message code="role.delete.confirmation" />'.replace("this",selectedRole)); 
+   	 	if(!answer)
+       	 	return false; 
+    	 document.searchForm.action ="<%=TSConstants.ACTION_DELETE_ROLE%>.htm"  ;
+    } 
+    //Since the default focus was on Add, when user hits enter key redirecting to Add page. hence gone below approach
+    else  if(document.pressed == 'Add Role')  {
+            document.getElementById("actionName").value='AddView';
+   			document.searchForm.action ="<%=TSConstants.ACTION_ADD_ROLE%>.htm" ;
+   			document.searchForm.submit();
+    }
+    else  if(document.pressed == 'Search' )  {
+    		
+            document.getElementById("actionName").value='Search';         	
+			document.searchForm.action ="<%=TSConstants.ACTION_VIEW_ROLES%>.htm"  ;
+   }
+    return true;
+}
+
+</script>
+			
+			<div id="tabularData">
+			<form:form method="POST" id="searchForm" name="searchForm"  commandName="role" onsubmit="return onSubmit()">
+				<div id="titleBar">
+				  <div class="title">View and Add Roles  </div>
+				   
+					<div class="addSectionBttn">
+					<ts:button validateAction="true" action="<%=WebConstants.ADD_ROLE_ACTION%>"  type="button" cssClass="large clButton yellow" name="Add Role" value="Add Role"  onClick="document.pressed=this.name;onSubmit();" />
+					</div>
+				</div>
+				
+				
+				<form:hidden path="actionName" id="actionName"/>
+				<div><center><form:errors path="error" cssClass="alertMsg" /></center></div>
+				<c:if test='${null!=success_key }'>
+					<div class="successMsg"><spring:message code="${success_key}" /></div>
+					<c:remove scope="session" var ="success_key"/>
+				</c:if>
+				<c:if test='${null!=alert_key }'>
+					<div><center><div class="alertMsg"><spring:message code="${alert_key}" />&nbsp;</div></center></div>
+					<c:remove var="alert_key" scope="session" />
+				</c:if>
+				<div id="SearchResults">
+					
+					<c:choose>
+					<c:when test="${empty searchResults}">
+						<div class="alertMsg">No Records Found</div>
+					</c:when>
+					<c:otherwise>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" id="sectionsTable">
+					 <thead>
+					  <tr>
+						<th width="5%">&nbsp;</th>
+						<th width="23%">Role Name </th>
+						<th width="19%">Role Type </th>
+						<th width="27%">Role Description </th>
+						<th width="12%">Status</th>
+					  </tr>
+					 </thead>
+					<tbody>
+					  <c:forEach var="role" items="${searchResults}" varStatus="loop" > 
+                      <tr class="${loop.index % 2 == 0 ? '' : 'altrow'}">
+						<td style="text-align: center;"><form:radiobutton  id="${role.roleId}" value="${role.roleId}" path="selectedRoleId" disabled="${(role.roleId==sessionScope.admin_role_id) || ('PA' ne sessionScope.user_role_type && role.roleId==sessionScope.user_role_id) ? true: false}"/></td>
+						<td>${role.roleName}</td>
+						<td>${role.roleType}</td>
+						<td>${role.roleDescription}</td>
+						
+							<c:choose> 
+								<c:when test="${'Active' eq role.status}"> 
+								<td class="activeStatus">
+			    					${role.status}
+			    					</td>
+								</c:when> 
+								<c:otherwise> 
+				    				<td >
+			    					${role.status}
+			    					</td>
+				    			</c:otherwise> 
+			    			</c:choose> 
+						
+					  </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                     </c:forEach> 
+                     </tbody>  					 
+					</table>
+					</c:otherwise>
+					</c:choose>
+					<div id="sectionBttns">
+					<ts:button validateAction="true" action="<%=WebConstants.EDIT_ROLE_ACTION%>"   type="submit" cssClass="large clButton blue" name="Edit" value="Edit" onClick="document.pressed=this.name"/>
+					<ts:button validateAction="true" action="<%=WebConstants.DELETE_ROLE_ACTION%>"    type="submit" cssClass="large clButton gray" name="Delete" value="Delete"  onClick="document.pressed=this.name"/>
+					</div>
+				</div>
+				</form:form>
+			</div>
+			
+		
+	
+ 

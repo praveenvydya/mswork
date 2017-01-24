@@ -1,0 +1,136 @@
+div.displaycode { 
+	background:#FFFFFF;
+	border:1px solid #E0E0E0;
+	font-family:"Courier New",Courier,monospace;
+	overflow: hidden;
+	border-radius: 4px 4px 4px 4px;
+	margin: 0 0 1.5em;
+}
+div.displaycode pre{
+	width: 100%;
+	overflow: auto;
+	padding:0;
+	margin:0;
+	font-size:13px;
+	clear: both;
+	border-radius: 0;
+	border: none;
+}
+
+/* tabs */
+div.displaycode ul.tabs {
+	overflow: hidden;
+	padding: 5px 0 5px 0;
+	margin: 0;
+	list-style: none;
+	border-bottom: 1px solid #E0E0E0;
+	width: 100%;
+	position: relative;
+}
+div.displaycode ul.tabs li {
+	padding: 0;
+	margin: 0 5px;
+	float: left;
+	background: none;
+	border-bottom: 1px dashed #CCC;
+	line-height:1.0em;
+	color: #CCC;
+	cursor: pointer;
+}
+div.displaycode ul.tabs li.active {
+	border-bottom: none;
+	cursor: default;
+}
+
+/* pre */
+div.displaycode code ol {
+	margin: 0;
+	padding:0 0 0 45px;
+	background:#e7e5dc; 
+}
+div.displaycode code ul {
+	margin: 0;
+	padding:0;	
+}
+div.displaycode code ol li,
+div.displaycode code ul li {
+	padding:0 0 0 5px;
+	border-left:3px solid #CCC;
+	background:#F8F8F8;
+}
+div.displaycode code ul li {
+	border-left:none;
+}
+div.displaycode code ol li.even,
+div.displaycode code ul li.even {
+	background-color:#FFFFFF;
+}
+div.displaycode pre.source {
+	display: none;
+	padding:0 0 0 5px;
+}
+
+/* highligting */
+code .str { 
+	color: #080; 
+}
+code .kwd,
+code .kwd span { 
+	color: #070;
+}
+code .com,
+code .com span { 
+	color:#080;
+	font-style: italic;
+	font-weight: normal; 
+}
+code .typ { 
+	color: #606; 
+}
+code .lit { 
+	color: #493DCE;
+}
+code .pun { 
+	color: #660; }
+code .pln { 
+	color: #493DCE; 
+}
+code .tag { 
+	color: #389953;
+	font-weight: bold;  
+} 
+code .atn { 
+	color: #AC1E1E; 
+}
+code .atv { 
+	color: #493DCE; 
+}
+code .dec { 
+	color: #606; 
+}
+code .fnc,
+code .fnc span { 
+	color: #00b; 
+}
+
+/* css */
+.css code .kwd,
+.css code .kwd span { 
+	color: #991D67;
+	
+}
+/* php */
+.php code .str,
+.php code .str span { 
+	color: #d00; 
+}
+.php code .var,
+.php code .var span { 
+	color: #00b; 
+}
+.php code .com,
+.php code .com span { 
+	color:#ff8000;
+	font-style: italic;
+	font-weight: normal; 
+}

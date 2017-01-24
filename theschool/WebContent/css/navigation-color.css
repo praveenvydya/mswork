@@ -1,0 +1,223 @@
+@font-face {
+	font-family: "Segoe UI";
+	src: local("Segoe UI"), url("/shell/fonts/segoeui.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* @font-face {
+	font-family: "Segoe UI Light";
+	src: local("Segoe UI Light"), url("/shell/fonts/segoeuil.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Segoe UI Semibold";
+	src: local("Segoe UI Semibold"), url("/shell/fonts/seguisb.ttf");
+	font-weight: normal;
+	font-style: normal;
+} */
+
+div.bodyHeader {
+	height: 35px;
+	min-height: 35px;
+	min-width: 995px;
+	width: 100%;
+	z-index: 100;
+	position: relative;
+}
+
+div.headerFixedHeight {
+	height: 35px !important;
+	min-height: 35px !important;
+	top: 0px !important;
+}
+
+div.headerContent {
+	font-weight: normal;
+	font-size: 13px;
+	margin: 0 auto;
+	min-width: 960px;
+	text-align: left;
+	line-height: 35px;
+	position: relative;
+	height: 35px;
+	z-index: 20;
+}
+
+.headerContent a {
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.headerContent #shellLogoArea {
+	float: left;
+	margin-right: 16px;
+	height: 35px;
+	width: 32px;
+}
+
+.headerContent #shellLogoArea #shellLogo {
+	height: 32px;
+	width: 32px;
+	position: absolute;
+	top: 16px;
+	left: 0;
+	background: url("../images/shell/XboxLogo.png") no-repeat center center;
+}
+
+.headerContent .navigationArea {
+	float: left;
+	height: 35px;
+	z-index: 30;
+}
+
+.headerContent .navigationArea ul.navigationElements {
+	display: inline-block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	/* font-family: "Segoe UI Semibold", Arial, Sans-Serif; */
+}
+
+.headerContent .navigationArea ul.navigationElements li {
+	float: left;
+	list-style: none;
+	text-align: left;
+	line-height: 35px;
+	color: #FFFFFF;
+    cursor: pointer;
+}
+.headerContent .navigationArea ul.navigationElements li:HOVER {
+	opacity:0.85;
+}
+
+.headerContent .navigationArea ul.navigationElements li:hover,.headerContent .navigationArea ul.navigationElements li:hover>a,.headerContent .navigationArea ul.navigationElements li:focus,.headerContent .navigationArea ul.navigationElements li:focus>a
+	{
+	color: white;
+	background-color: #ffffd5;
+}
+
+.headerContent .navigationArea ul.navigationElements li a {
+	color: white;
+	display: block;
+	padding: 0px 14px;
+	text-decoration: none;
+	white-space: nowrap;
+	font-family: "Segoe UI Semibold",Arial,Sans-Serif;
+}
+
+.headerContent .navigationArea ul.navigationElements li a:hover {
+	color: white;
+}
+
+.headerContent .navigationArea ul.navigationElements li:hover ul {
+	visibility: visible;
+}
+
+.headerContent .navigationArea ul.navigationElements li ul {
+	font-family: "Segoe UI", Arial, Sans-Serif;
+	min-width: 165px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	background-color: #222222;
+	visibility: hidden;
+	z-index: 200;
+}
+
+.headerContent .navigationArea ul.navigationElements li ul li {
+	background-color: transparent;
+	float: none;
+	line-height: 36px;
+}
+
+.headerContent .navigationArea ul.navigationElements li ul li a {
+	color: #ebebeb;
+	background-color: transparent;
+}
+
+.headerContent .navigationArea ul.navigationElements li ul li a:hover {
+	color: white;
+	background-color: #E2E2BD;
+}
+
+.headerContent .navigationArea div#shellSearchContainer {
+	cursor: pointer;
+	font-family: "Segoe UI", Arial, Sans-Serif;
+	float: left;
+	height: 35px;
+	width: 35px;
+	position: relative;
+}
+
+.headerContent .navigationArea div#shellSearchContainer .searchIcon {
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	top: 22px;
+	right: 22px;
+	
+	background-repeat: no-repeat;
+	background-position: center center;
+	z-index: 22;
+}
+
+.headerContent .navigationArea div#shellSearchContainer.opened,.headerContent .navigationArea div#shellSearchContainer:hover
+	{
+	background-color: #222222;
+}
+
+.headerContent .navigationArea div#shellSearchContainer #searchBoxWrapper
+	{
+	background-color: #222222;
+	cursor: default;
+	overflow: hidden;
+	position: absolute;
+	right: 35px;
+	width: 0;
+	z-index: 22;
+}
+
+.headerContent .navigationArea div#shellSearchContainer #searchTextBox {
+	background-color: white;
+	border: 0;
+	color: #6b6b6b;
+	height: 24px;
+	line-height: 24px;
+	margin-left: 10px;
+	padding: 10px;
+	width: 162px;
+}
+
+.cl1{
+	 background: none repeat scroll 0 0 #00A8EC;
+}
+.cl2{
+	 background: none repeat scroll 0 0 #6B6B6B;
+}
+.cl3{
+	 background: none repeat scroll 0 0 #43B51F;
+}
+.cl4{
+	 background: none repeat scroll 0 0 #F58D00;
+}
+.cl5{
+	 background: none repeat scroll 0 0 #D32C2C;
+}
+.cl6{
+	 background: none repeat scroll 0 0 #3C5B9B;
+}
+.cl7{
+	 background: none repeat scroll 0 0 #F874A4;
+}
+.cl8{
+	 background: none repeat scroll 0 0 #FFC808;
+}
+.cl9{
+	 background: none repeat scroll 0 0 #640F6C;
+}
+.cl10{
+	 background: none repeat scroll 0 0 #00A8EC;
+}

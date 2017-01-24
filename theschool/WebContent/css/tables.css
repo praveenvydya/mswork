@@ -1,0 +1,176 @@
+.save_dd,.cancel_dd{
+display: none;
+}
+
+.holiday div,.holiday{
+	background-color: #BDBDBD !important;
+}
+
+.dropdown-toggle {
+  background: #fff;
+  border-radius: .2em .2em 0 0;
+ /*  border: 1px solid #E4E3E1;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067); */
+}
+ul.dropdown {
+  display:none;
+ position: absolute; 
+/*   top: 100%;
+ margin-top: 0px; */
+margin-left: 0px;
+  background: #fff;
+  padding: 0;
+   border-radius: .2em .2em 0 0;
+   border: 1px solid #E4E3E1;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+  border-radius: 0 0 .2em .2em;
+  z-index: 2;
+}
+ul.dropdown li{
+ padding: 5px;
+  cursor: pointer;
+}
+
+ul.dropdown li:HOVER{
+background: #E9EDFF;
+}
+ul.dropdown li a{
+
+}
+.dropdown-toggle.active{
+background: #E9EDFF;
+}
+nav{position: relative;
+height: 20px;
+display: initial;
+ }
+[class*=" icon-"], [class^=icon-] {
+padding:0px !important;
+margin: 0px !important;
+}
+
+.dataTable tr:HOVER { 
+	background-color: #F3F9FC;
+}
+
+.today div,.today{
+	background-color: #D3FFCD !important;
+}
+
+.attTable td{
+	width: 50px;
+}
+.attTable td.rollno,.attTable td.stname{
+	width: 200px;
+}
+
+.marks-subject{
+	width: 8%;
+	padding: 0px !important;
+}
+.td_marks-subject input{
+width: 40px;
+}
+.marks-subject div{
+padding: 5px !important;
+}
+.marksTable{
+	width: 800px !important;
+}
+td.stname{
+text-align: left !important;
+}
+input[type="text"]:disabled {
+background: inherit;
+border: none;
+box-shadow: none;
+}
+.examsTitle .tl{
+	margin: auto 5px auto 0px;
+	display: inline;
+}
+
+.error{
+	border: 1px solid #b94a48 !important;
+}
+.error:FOCUS{
+	box-shadow: none !important;
+}
+input[type=checkbox], input[type=radio] {
+margin: 6px;
+}
+.actBt{
+	background-color: #F3F9FC;
+}
+.icon-uniF419:before{
+	color: #123;
+}
+.td_marks-subject{
+	text-align: center;
+}
+#sectionsTable td div.loader {
+background: url(../images/aL.gif) no-repeat;
+position: absolute;
+height: 26px;
+z-index: 10;
+width: 25px;
+margin: 2px 14px;
+opacity: 0.5;
+}
+.secTable .sec .el{
+float: left;
+}
+.secTable .sec .eld{
+}
+
+.secTable th {
+	background: #f1f1f1;
+	color: #272626;
+	padding: 4px 10px;
+	border-bottom: 1px solid #e4e3e1;
+	text-align: left;
+	white-space: pre-wrap;
+	font-weight: bold;
+}
+
+.secTable div.c {
+	background-color: #EEE;
+}
+.secTable {
+width:100%;
+	background: #fff;
+border-left: 1px solid #E4E3E1;
+border-top: 1px solid #E4E3E1;
+border-right: 1px solid #E4E3E1;
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+.secTable td {
+	border-bottom: 1px solid #e4e3e1;
+    border-left: 1px solid #e4e3e1;
+    text-align: center;
+    vertical-align: top;
+    white-space: inherit;
+}
+.sec div,.secTable .sec {
+padding: 2px;
+background: none !important;
+}
+.tabs-list li{
+	/* width: 10%; */
+}
+.tabs ul.tabs-list a{
+	padding: 4px 22px !important;
+}
+.sub_mon_y td{
+padding: 5px 0px;
+}
+.attheader div{
+/* padding: 2px 5px;  */
+}
+ .tabs .tabBox .tabbody{
+	/* display: inline-block;
+	width: 1049px; */
+}
+.tc td div{
+padding: 5px;
+}

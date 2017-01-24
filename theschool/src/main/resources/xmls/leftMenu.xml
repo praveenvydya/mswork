@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<menuData>
+    <name>mainmenu</name>
+    <subMenus>
+        <subMenu>
+            <menuId>1</menuId>
+            <name>home</name>
+            <path>/home</path>
+            <title>Home</title>
+        </subMenu>
+         <subMenu>
+            <menuId>2</menuId>
+            <name>aboutus</name>
+            <path>/aboutus</path>
+            <subMenus>
+                <subMenu>
+                    <menuId>201</menuId>
+                    <name>campuses</name>
+                    <path>/campuses</path>
+                    <title>Campuses</title>
+                </subMenu>
+                <subMenu>
+                    <menuId>202</menuId>
+                    <name>infrastructure</name>
+                    <path>/infrastructure</path>
+                    <title>Infrastructure</title>
+                </subMenu>
+            </subMenus>
+            <title>About Us</title>
+        </subMenu>
+        <subMenu>
+            <menuId>3</menuId>
+            <name>academics</name>
+            <path>/academics</path>
+            <subMenus>
+                <subMenu>
+                    <menuId>301</menuId>
+                    <name>preschool</name>
+                    <path>/preschool</path>
+                    <title>Preschool</title>
+                </subMenu>
+                <subMenu>
+                    <menuId>302</menuId>
+                    <name>primary</name>
+                    <path>/primary</path>
+                    <title>Primary</title>
+                </subMenu>
+                <subMenu>
+                    <menuId>303</menuId>
+                    <name>secondary</name>
+                    <path>/secondary</path>
+                    <title>Secondary</title>
+                </subMenu>
+            </subMenus>
+            <title>Academics</title>
+        </subMenu>
+    </subMenus>
+    <title>Main Menu</title>
+</menuData>

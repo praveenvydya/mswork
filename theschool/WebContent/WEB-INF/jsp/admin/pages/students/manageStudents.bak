@@ -1,0 +1,360 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.vydya.theschool.common.constants.TSConstants"%>
+<%@ page import="com.vydya.theschool.web.constants.WebConstants"%>
+
+<script defer="defer">
+
+
+
+</script>
+
+<style type="text/css">
+.std-thumb{
+	padding: 2px 0px;
+}
+.std-name{
+	 height: 37px;
+    line-height: 20px;
+    padding: 2px 0 2px 4px;
+    width: 156px;
+}
+.float-left,.float-left div{
+	float:left;
+}
+
+input[type="text"]{
+	width: auto !important; 
+}
+
+</style>	
+	<script type="text/javascript">  
+	jQuery(document).ready(function($){
+	
+		
+		 var d = new Date();
+			var year = d.getFullYear();
+			var stY= year-19;
+			var endY = year-2;
+			 
+			 
+			 $(".fromDate").datepicker({
+		         numberOfMonths: 1,
+				 changeMonth: true,
+				changeYear: true,
+				dateFormat:'yy-mm-dd',
+				yearRange: stY+":"+new Date().getFullYear(),
+				maxDate:'0',
+		         onSelect: function(selected) {
+		           $(".toDate").datepicker("option","minDate", selected);
+		         }
+		     });
+		     $(".toDate").datepicker({
+		         numberOfMonths: 1,
+				 dateFormat:'yy-mm-dd',
+				 changeMonth: true,
+				changeYear: true,
+				yearRange: stY+":"+new Date().getFullYear(),
+				maxDate:'0',
+		         onSelect: function(selected) {
+		            $(".fromDate").datepicker("option","maxDate", selected);
+		         }
+		     }); 
+
+			 
+		     var oTable =	$('#example').dataTable({
+					"sPaginationType" : "full_numbers",
+					"bJQueryUI" : true
+				}).columnFilter({
+					aoColumns : [ {
+						type : "text",
+						sSelector : "#studentNameFilterz"
+					}, {
+						type : "text",
+						sSelector : "#rollNumberFilter"
+					},{
+						type : "select",
+						sSelector : "#classFilter"
+					}, {
+						type : "select",
+						sSelector : "#sectionFilter"
+					}, {
+						type : "date-range",
+						sSelector : "#dateRangeFilter",
+						sRangeFormat: "Between {from} and {to} dates",
+						dateTypes:{ maxDate:'0',startYear:stY ,endYear:new Date().getFullYear(),dateFormat:'dd-MM-yy'} 
+						
+					},{
+						type : "select",
+						sSelector : "#genderFilter"
+					}]
+				});
+	
+		<%--  $('#addStudentBttn').click(function(){
+				
+				$('#addStudentBttn').attr("disabled", true);	
+				$("#studentSearchForm").attr("action", '<%=TSConstants.ACTION_ADD%>.htm');
+				$("#studentSearchForm").submit();
+			});  --%>  
+		 
+		/* 	$("#addStudentBttn").fancybox({
+				'width'				: '75%',
+				'height'			: '75%',
+				'autoScale'			: false,
+				'overlayShow'	: true,
+				'hideOnOverlayClick':false,
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none',
+				'type'				: 'iframe',
+				'onStart' : function() {
+					alert("opened");
+				},
+				'onClosed'			:function() {
+					loadUpdatedStudents();
+					
+				}
+			}); */
+			function loadUpdatedStudents(){
+				$.getJSON('loadUpdatedStudent.htm', function(data) {displayUpdatedStudent(data);});
+			 }
+			
+			function displayUpdatedStudent(data) {
+				$.each(data, function(index, student) {
+					alert("student updated");
+							  // $(".outer-boundary").append('<div class="inner-boundary"><div class="inner-border"><div class="gallery-inner"><div class="thumbnail itemcontainer"><img src="/theschool/gallery?id='+gallery.id+'" id="galleryImage_'+gallery.id+'" class="galleryImage" alt="'+gallery.name+'" /> </div><div class="gallery-decorator"><h3><a href="" id="galleryName_'+data.gallery+'"  class="galleryName">'+gallery.name+'</a></h3><p>'+gallery.galleryDesc+'</p></div><div class="gallery-info-container"><span class="displayDate">'+gallery.lastmodified+'</span><p>'+gallery.lastmodifiedby+'</p></div></div></div></div>');
+					});
+				}
+		
+			
+			$(".rollNumber").click(function(){
+				 var id = $(this).parents("tr").attr("id").split('_');
+				$("#studentForm").attr("action", '<%=TSConstants.ACTION_VIEW%>.htm');
+				$("input[id=studentId]").val(id[1]);
+				$("#studentForm").submit();
+				
+			});
+			
+			  $('.nav-toggle').click(function(){
+				  $(".filterTable").slideToggle(1000);
+				  });
+			  
+			   
+	});
+	</script>
+	
+	
+
+<div id="tabularDatax">
+	<div id="titleBar">
+		<div class="title">Search Page</div>
+		<div class="addSectionBttn">
+			</div> 
+	</div>
+	<c:if test='${null!=success_key }'>
+		<div class="successMsg">
+			<spring:message code="${success_key}" />
+		</div>
+		<c:remove var="success_key" scope="session" />
+	</c:if>
+		
+	</div>
+	
+
+<div id="">
+		<form:form enctype="multipart/form-data" name="studentSearchForm"
+			id="studentSearchForm" class="" method="POST"
+			commandName="studentSearchForm">
+			<form:input type="hidden" path="actionType" class="" value="view"/>
+			<table class="searchTable">
+				<tr>
+					<td class=""><label for="studentClass" class="">Class</label>
+					</td>
+					<td class=""><label for="studentClass" class="">Section</label>
+					</td>
+					<td class=""><label for="studentClass" class="">Campus</label>
+					</td>
+					<td class="" colspan="2" style="text-align: center;"><label for="studentClass" class="">Date
+							Of Join</label>
+					</td>
+				</tr>
+				<tr>
+					<td><form:select path="studentClass" cssClass=""
+							disabled="">
+							<form:option value="0" 	label="Class" selected="true" />
+							<c:forEach items="${classRefList}" var="classRef">
+								<form:option value="${classRef.idValue}"
+									label="${classRef.description}" />
+							</c:forEach>
+						</form:select></td>
+					<td><form:select path="sectionOfClass" cssClass="" disabled="">
+						<form:option value="0" 	label="Section" selected="true"/>
+							<c:forEach items="${classSectionRefList}" var="sectionRef">
+								<form:option value="${sectionRef.idValue}"
+									label="${sectionRef.description}" />
+							</c:forEach>
+						</form:select></td>
+						<td><form:select path="campus" cssClass=""
+							disabled="">
+							<form:option value="0" 	label="Campus" selected="true" />
+							<c:forEach items="${campusRefList}" var="campusRef">
+								<form:option value="${campusRef.idValue}"
+									label="${campusRef.description}" />
+							</c:forEach>
+						</form:select></td>
+					<td><form:input path="fromDateOfJoin" class="fromDate"/></td>
+					<td><form:input path="toDateOfJoin" class="toDate"/></td></tr>
+							<tr>
+				
+				<tr>
+					<td colspan="5" style="text-align: center;">
+						<button type="submit" class="large clButton blue" id="searchBttn" title="Add">Search</button>
+						</td>
+				</tr>
+			</table>
+			<table>
+			<tr>
+					<td class="" colspan="5"></td>
+					<td>
+						<a id="addStudentBttn" class="large clButton blue"
+				href="add.htm">Add Student</a></td>
+				</tr>
+			</table>
+		</form:form>
+
+
+
+
+
+
+<c:if test='${null!=studentsList }'>
+					
+				
+					<c:choose>
+						<c:when test="${empty studentsList}">
+							<div class="alertMsg">No Records Found</div>
+						</c:when>
+						<c:otherwise>
+					<div>
+						<span class="nav-toggle link" style="width: 590px;margin: auto;">Show Advanced Filter</span>
+					</div>	
+		<table class="display filterTable" id="Table1" border="0" cellpadding="0" style="display: none;"
+			cellspacing="0">
+			<!-- <thead>
+				<tr>
+					<th>Column</th>
+					<th>Filter</th>
+				</tr>
+			</thead> -->
+			<tbody>
+				<tr id="filter_global">
+					<td align="right">Student Name :&nbsp;</td>
+					<td id="studentNameFilterz" align="left">
+					</td>
+				</tr>
+				<tr id="filter_col1">
+					<td align="right">Roll Number :&nbsp;</td>
+					<td id="rollNumberFilter" align="left"><span
+						class="filter_column filter_text"><input
+							class="search_init text_filter" value="Browser" type="text">
+					</span>
+					</td>
+				</tr>
+				
+				<tr id="filter_col3">
+					<td align="right">Class :&nbsp;</td>
+					<td id="classFilter" align="left">
+					</td>
+				</tr>
+				<tr id="filter_col4">
+					<td align="right">Section :&nbsp;</td>
+					<td id="sectionFilter" align="left">
+					</td>
+				</tr>
+				<tr id="filter_col5">
+					<td align="right">Date Of Join :&nbsp;</td>
+					<td id="dateRangeFilter" align="left"><span
+						class="filter_column filter_date_range">From <input
+							class="date_range_filter" id="" 
+							type="text"> to <input class="date_range_filter"
+							id=""  type="text">
+					</span>
+					</td>
+				</tr>
+				<tr id="filter_global">
+					<td align="right">Gender :&nbsp;</td>
+					<td id="genderFilter" align="left">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<div id="demo">
+
+			<div id="example_wrapper" class="dataTables_wrapper" role="grid">
+
+				<table aria-describedby="example_info" class="display dataTable"
+					id="example" border="0" cellpadding="0" cellspacing="0">
+					<thead>
+						<tr >
+							<th	style="width: 216px;" colspan="1"	rowspan="1" 
+								 class="sorting_asc">Student Name</th>
+							<th style="width: 100px;" colspan="1" rowspan="1"
+								class="sorting">Roll Number</th>
+							<th	style="width: 109px;" colspan="1" rowspan="1"
+								class="sorting">Class</th>
+							<th	style="width: 75px;" colspan="1" rowspan="1"
+								class="sorting">Section</th>
+							<th	style="width: 169px;" colspan="1" rowspan="1"
+								class="sorting">Date Of Join</th>
+							<th style="width: 15px;" colspan="1" rowspan="1"
+								class="sorting">Gender</th>
+						</tr>
+					</thead>
+					<tfoot style="display: none">
+						<tr>
+							<th colspan="1" rowspan="1">Student Name</th>
+							<th colspan="1" rowspan="1">Roll Number</th>
+							<th colspan="1" rowspan="1">Class</th>
+							<th colspan="1" rowspan="1">Section</th>
+							<th colspan="1" rowspan="1">Date Of Join</th>
+							<th colspan="1" rowspan="1">Gender</th>
+						</tr>
+					</tfoot>
+	<form:form  name="studentForm" action=""
+										id="studentForm" class="" method="POST"
+										commandName="studentForm">
+										<form:input type="hidden" path="studentId"  id="studentId" class="" value=""/>
+					<tbody >
+						<c:if test='${null!=studentsList }'>
+							<c:forEach var="student" items="${studentsList}">
+							
+											<tr class="even_gradeA odd" id="student_${student.studentId}">
+												<td class="sorting_1"><div class="float-left"><div> <img class="std-thumb" width="30px" height="40px"
+							src="data:image/jpg;base64,<c:out value='${student.photo}'/>" /></div><div class="std-name">${student.studentName}</div></div></td>
+												<td class=" "><a class="rollNumber link">${student.rollNumber}</a></td>
+												<td class="center ">${student.studentClassData.className}</td>
+												<td class="center ">${student.sectionOfClass}</td>
+												<td class="center ">${student.dateOfJoinString}</td>
+												<td class=" ">${student.gender}</td>
+											</tr>
+								
+							</c:forEach>
+						</c:if>
+					</tbody>
+					</form:form>
+				</table>
+
+
+			</div>  
+
+		</div>
+		<div class="spacer"></div>
+		
+		</c:otherwise>
+	</c:choose>
+	
+	</c:if>
+</div>

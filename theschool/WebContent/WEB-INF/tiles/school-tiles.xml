@@ -1,0 +1,626 @@
+
+
+
+
+
+
+<!-- <?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE tiles-definitions PUBLIC        
+ "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"       
+  "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="loginLayout" template="/WEB-INF/jsp/layout/loginBase2.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/loginFooter.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="login.loginPage" extends="loginLayout">
+		<put-attribute name="title" value="The School Login"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/login/loginPage2.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="login.firstTimeLoginPage" extends="loginLayout">
+		<put-attribute name="title" value="First Time User Login"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/login/firstTimeUser.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="login.changePasswordPage" extends="loginLayout">
+		<put-attribute name="title" value="Change Password"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/login/changePassword.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="login.forgotPassword" extends="loginLayout">
+		<put-attribute name="title" value="Forgot Password"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/login/forgotPasword.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="login.noPermissions" extends="adminBaseLayout">
+		<put-attribute name="title" value="The School No Permissions"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/login/noPermissionsPage.jsp"></put-attribute>
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	
+
+	<definition name="reportBaseLayout" template="/WEB-INF/jsp/layout/baseReport.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/jsp/layout/navigation.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value="/WEB-INF/jsp/layout/breadcrum.jsp"></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="pagination" value="/WEB-INF/jsp/layout/pagination.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"></put-attribute>
+	</definition>	
+	
+	<definition name="adminBaseLayout" template="/WEB-INF/jsp/admin/layout/adminBaseReport.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/jsp/admin/layout/adminHeader.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/jsp/admin/layout/adminNavigation.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value="/WEB-INF/jsp/admin/layout/adminBreadcrum.jsp"></put-attribute>
+		<put-attribute name="leftmenu" value="/WEB-INF/jsp/school/layout/schoolLeftMenu.jsp"></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/jsp/admin/layout/adminFooter.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="adminPlaneLayout" template="/WEB-INF/jsp/admin/layout/adminPlaneLayout.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="header" value=""></put-attribute>
+		<put-attribute name="menu" value=""></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+		<put-attribute name="leftmenu" value=""></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	<definition name="theSchoolBaseLayout" template="/WEB-INF/jsp/school/layout/schoolBase.jsp">
+		<put-attribute name="title" value="">The School</put-attribute>
+		<put-attribute name="header" value="/WEB-INF/jsp/school/layout/schoolHeader.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/jsp/school/layout/schoolNavigation3.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/jsp/school/layout/schoolNavigationMenuNew.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value="/WEB-INF/jsp/school/layout/schoolBreadcrum.jsp"></put-attribute>
+		<put-attribute name="leftmenu" value="/WEB-INF/jsp/school/layout/schoolLeftMenu.jsp"></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/jsp/school/layout/schoolFooter.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="theSchoolNewsLayout" template="/WEB-INF/jsp/school/layout/schoolNewsBase.jsp">
+		<put-attribute name="title" value="">The School</put-attribute>
+		<put-attribute name="header" value="/WEB-INF/jsp/school/layout/schoolHeader.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/jsp/school/layout/schoolNavigationMenu.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/jsp/school/layout/schoolNavigationMenuNew.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/jsp/school/layout/schoolNavigation3.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value="/WEB-INF/jsp/school/layout/schoolBreadcrum.jsp"></put-attribute>
+		<put-attribute name="leftmenu" value="/WEB-INF/jsp/school/layout/schoolLeftMenu.jsp"></put-attribute>
+		<put-attribute name="rightNewsmenu" value="/WEB-INF/jsp/school/layout/contentLeftMenu.jsp"></put-attribute>
+		
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/jsp/school/layout/schoolFooter.jsp"></put-attribute>
+	</definition>
+		
+	<definition name="iframeLayout" template="/WEB-INF/jsp/admin/layout/adminiframeBaseReport.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/jsp/admin/layout/adminHeader.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/jsp/admin/layout/adminNavigation.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value="/WEB-INF/jsp/admin/layout/adminBreadcrum.jsp"></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/jsp/admin/layout/adminFooter.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	
+	<definition name="group.viewGroups" extends="adminBaseLayout">
+		<put-attribute name="title" value="Groups List"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/group/searchOrViewUserGroups.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="group.addGroup" extends="adminBaseLayout">
+		<put-attribute name="title" value="Add Group"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/group/addGroup.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="group.editGroup" extends="adminBaseLayout">
+		<put-attribute name="title" value="Edit Group"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/group/addGroup.jsp"></put-attribute>
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	<definition name="section.viewSections" extends="adminBaseLayout">
+		<put-attribute name="title" value=" Manage Sections"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/section/sectionList.jsp"></put-attribute>
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	<definition name="section.addSection" extends="adminBaseLayout">
+		<put-attribute name="title" value=" Add Sections"></put-attribute>		
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/section/addSectionDetails.jsp"></put-attribute>	
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	<definition name="section.editSection" extends="adminBaseLayout">
+		<put-attribute name="title" value=" Edit Sections"></put-attribute>		
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/section/addSectionDetails.jsp"></put-attribute>	
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	<definition name="user.viewUsers" extends="adminBaseLayout">
+		<put-attribute name="title" value="Users List"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/user/searchOrViewUsers.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="user.addUser" extends="adminBaseLayout">
+		<put-attribute name="title" value="Add User"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/user/addUser.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="user.editUser" extends="adminBaseLayout">
+		<put-attribute name="title" value="Edit User"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/user/addUser.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="role.viewRoles" extends="adminBaseLayout">
+		<put-attribute name="title" value="Roles List"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/role/searchOrViewRoles.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="role.addRole" extends="adminBaseLayout">
+		<put-attribute name="title" value="Add Role"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/role/addRole.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="role.editRole" extends="adminBaseLayout">
+		<put-attribute name="title" value="Edit Role"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/role/editRole.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="property.viewAllProperties" extends="adminBaseLayout">
+		<put-attribute name="title" value="Properties"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/properties/displayProperty.jsp"></put-attribute>
+	</definition>
+	
+	Home Page Images 
+	<definition name="manageHomePage.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="HomePage Images"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/home/manageHomePageImages.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageHomePage.addOrEdit" extends="adminBaseLayout">
+		<put-attribute name="title" value="HomePage Images"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/home/addOrEditHomePageImage.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageToppers.addOrEdit" extends="adminBaseLayout">
+		<put-attribute name="title" value="Manage Toppers"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/toppers/addOrEditToppersGroup1.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageToppers.viewGroups" extends="adminBaseLayout">
+		<put-attribute name="title" value="Manage Toppers"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/toppers/viewToppersGroups.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageToppers.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Manage Toppers"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/toppers/viewTopStudents.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	<definition name="school.home" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/home3.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.pagenotfound" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/pagenotfound.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.aboutus" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/aboutus.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.founder" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/founder.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="school.overview" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/overview.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="school.management" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/management.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="school.vission" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/vission.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.contactus" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/contactus.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="school.academics" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/academics.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+		<definition name="school.fecilities" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/fecilities.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="school.admissions" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/admissions.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="school.examination" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/examination.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="school.infrastructure" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/infrastructure.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="school.ranks" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/ranks.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.events" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/events.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	
+	<definition name="school.event" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/event.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.page" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/page.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	
+	<definition name="school.achievements" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/achievements.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.gallery" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/gallery.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.gallery.images" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/galleryImages.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.toppers" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/toppers.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.notifications" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/notifications.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.notification" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/notification.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.toppers.students" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/topStudents.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="view.ajaxupload" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Ajax Upload"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/ajaxfileupload.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.error" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/error.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+		<definition name="school.contentcat" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/contentCategory.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	
+	<definition name="school.content" extends="theSchoolNewsLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/content.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+		<put-attribute name="rightNewsmenu" value="/WEB-INF/jsp/school/layout/contentLeftMenu.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="school.contents" extends="theSchoolNewsLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/contents.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+		<put-attribute name="rightNewsmenu" value="/WEB-INF/jsp/school/layout/contentLeftMenu.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="school.content" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/newsitem.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="school.contents" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/newslist.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<definition name="manageEvents.addEvent" extends="iframeLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/events/addEvent.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	<definition name="manageStudents.search" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/students/manageStudents.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageStudents.view" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/students/viewStudent.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageStudents.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/students/viewAllStudents.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageMarks.search" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/students/manageStudentMarks.jsp"></put-attribute>
+	</definition>
+
+	<definition name="manageColumnContents.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/menu/manageColumnContents.jsp"></put-attribute>
+	</definition>
+	<definition name="manageColumnContents.view" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/menu/viewColumnContent.jsp"></put-attribute>
+	</definition>
+	
+		<definition name="manageNotifications.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/notifications/manageNotifications.jsp"></put-attribute>
+	</definition>
+	<definition name="manageNotifications.view" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/notifications/viewNotification.jsp"></put-attribute>
+	</definition>
+	
+		<definition name="manageContents.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/content/manageContents.jsp"></put-attribute>
+	</definition>
+	<definition name="manageContents.view" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/content/viewContent.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	<definition name="manageContents.addOrEdit" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/content/addOrEditContent.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	<definition name="manageContents.addOrEditCategory" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/content/addOrEditContentCategory.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	<definition name="manageContents.attachments" extends="adminBaseLayout">
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/content/attachments.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	
+	<definition name="manageContents.attach" extends="adminPlaneLayout">
+		<put-attribute name="header" value=""></put-attribute>
+		<put-attribute name="title" value="Vydya e Techno Schools"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/content/attach.jsp"></put-attribute>
+		<put-attribute name="footer" value=""></put-attribute>
+	</definition>
+	
+	
+	<definition name="manageLibrary.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Library"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/library/viewLibrary.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageLibrary.view" extends="adminBaseLayout">
+		<put-attribute name="title" value="Library"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/library/viewBooks.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageEvents.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Events"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/viewEvents.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageClients.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Events"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/common/manageClients.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageEvents.view" extends="adminBaseLayout">
+		<put-attribute name="title" value="Events"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/events/viewEvent.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageEvents.addOrEdit" extends="adminBaseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/events/addOrEditEvent.jsp"></put-attribute>
+		<put-attribute name="title" value="Events"></put-attribute>	
+	</definition>
+	
+	
+	<definition name="manageMarks.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="School Menu"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/students/manageMarks.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageMarks.view" extends="adminBaseLayout">
+		<put-attribute name="title" value="School Menu"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/students/marksView.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageMenu.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="School Menu"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/menu/manageMenu.jsp"></put-attribute>
+	</definition>
+	<definition name="manageMenu.view" extends="adminBaseLayout">
+		<put-attribute name="title" value="School Menu"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/menu/viewMenuItem.jsp"></put-attribute>
+	</definition>
+	<definition name="manageMenu.addOrEdit" extends="adminBaseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/menu/addOrEditMenu.jsp"></put-attribute>
+		<put-attribute name="title" value="School Menu"></put-attribute>	
+	</definition>
+	
+	<definition name="library.library" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Library"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/library.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="library.books" extends="theSchoolBaseLayout">
+		<put-attribute name="title" value="Library Books"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/school/books.jsp"></put-attribute>
+		<put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	
+	<definition name="manageLibrary.addOrEdit" extends="adminBaseLayout">
+		<put-attribute name="title" value="Library"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/library/addOrEditBookCat.jsp"></put-attribute>
+	</definition>
+	
+	
+	CLASS TEACHERS SUBJECTS 
+	<definition name="manageClass.viewAll" extends="adminBaseLayout">
+		<put-attribute name="title" value="Classes"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/classes/classes.jsp"></put-attribute>
+	</definition>
+	<definition name="manageClass.addOrEdit" extends="adminBaseLayout">
+		<put-attribute name="title" value="Classes"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/classes/addOrEditClass.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageClass.subjects" extends="adminBaseLayout">
+		<put-attribute name="title" value="Subjects"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/classes/subjects.jsp"></put-attribute>
+	</definition>
+	<definition name="manageClass.addOrEditSubject" extends="adminBaseLayout">
+		<put-attribute name="title" value="Subjects"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/classes/addOrEditSubject.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageClass.teachers" extends="adminBaseLayout">
+		<put-attribute name="title" value="Teachers"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/classes/teachers.jsp"></put-attribute>
+	</definition>
+	<definition name="manageClass.addOrEditTeacher" extends="adminBaseLayout">
+		<put-attribute name="title" value="Teachers"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/classes/addOrEditTeacher.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="manageClass.attendance" extends="adminBaseLayout">
+		<put-attribute name="title" value="Attendance"></put-attribute>	
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/classes/attendance.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin404" extends="adminBaseLayout">
+ 		 <put-attribute name="body" value="/WEB-INF/error/404.jsp" />
+ 		 <put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+	<definition name="404" extends="theSchoolBaseLayout">
+ 		 <put-attribute name="body" value="/WEB-INF/error/404.jsp" />
+ 		 <put-attribute name="breadcrum" value=""></put-attribute>
+	</definition>
+ 	
+ 	
+ 	<definition name="user.homePage" extends="adminBaseLayout">
+		<put-attribute name="title" value=" "></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/user/userhome.jsp"></put-attribute>
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	<definition name="student.home" extends="adminBaseLayout">
+		<put-attribute name="title" value=" ">Student Home</put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/user/student/home.jsp"></put-attribute>
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	<definition name="parent.home" extends="adminBaseLayout">
+		<put-attribute name="title" value=" ">Parent Home</put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/user/parent/home.jsp"></put-attribute>
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	<definition name="student.attendance" extends="adminBaseLayout">
+		<put-attribute name="title" value=" ">Attendance</put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/user/parent/studentAttendance.jsp"></put-attribute>
+		<put-attribute name="pagination" value=""></put-attribute>
+	</definition>
+	
+	
+</tiles-definitions> 
+  -->

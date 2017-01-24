@@ -1,0 +1,127 @@
+#dark {
+    background-color: #333333;
+    border: 1px solid #000000;
+    margin-top: 20px;
+    padding: 10px;
+}
+#light {
+    background-color: #FFFFFF;
+    border: 1px solid #DEDEDE;
+    margin-top: 20px;
+    padding: 10px;
+	font-family: Arial;
+}
+li {
+    list-style: none outside none;
+  /*   padding-bottom: 10px;
+    padding-top: 10px; */
+}
+.clButton, .clButton:visited,.medium.clButton, .medium.clButton:visited  {
+    background: url("overlay.png") repeat-x scroll 0 0 #222222;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+   /*  border-radius: 6px 6px 6px 6px; */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    position: relative;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1;
+ /*text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);*/
+	/* text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); */
+}
+.clButton:hover {
+    background-color: #111111;
+    color: #FFFFFF;
+}
+.clButton:active {
+    top: 1px;
+    background-color: #212121;
+}
+.small.clButton, .small.clButton:visited {
+    font-size: 11px;
+}
+.large.clButton, .large.clButton:visited,.gx-btn,.gx-btn:visited {
+    font-size: 14px;
+    padding: 10px 20px;
+    margin: 10px 3px;
+    float: right;
+}
+.super.clButton, .super.clButton:visited {
+    font-size: 34px;
+    padding: 8px 14px 9px;
+}
+.pink.clButton, .magenta.clButton:visited {
+    background-color: #E22092;
+}
+.pink.clButton:hover {
+    background-color: #C81E82;
+}
+.green.clButton, .green.clButton:visited {
+    background-color: #749A02;
+}
+.green.clButton:hover {
+    background-color: #91BD09;
+}
+.red.clButton, .red.clButton:visited {
+    background-color: #E62727;
+}
+.red.clButton:hover {
+    background-color: #CF2525;
+}
+.orange.clButton, .orange.clButton:visited {
+    background-color: #FF822d;
+}
+.orange.clButton:hover {
+    background-color: #fd9b5b;
+}
+.gray.clButton, .orange.clButton:visited {
+    background-color: #929292;
+}
+.gray.clButton:hover {
+    background-color: #ADADAD;
+}
+.blue.clButton, .blue.clButton:visited {
+    background-color: #2672ec;
+}
+.blue.clButton:hover {
+    background-color: #5a94f1;
+}
+.blue3.clButton, .blue.clButton:visited {
+    background-color: #2981E4;
+}
+.blue3.clButton:hover {
+    background-color: #2575CF;
+}
+.yellow.clButton, .yellow.clButton:visited {
+    background-color: #FC9200;
+}
+.yellow.clButton:hover {
+    background-color: #FFB515;
+}
+
+.blue2.clButton, .blue2.clButton:visited {
+    background-color: #007D9A;
+}
+.blue2.clButton:hover {
+    background-color: #2DAEBF;
+}
+.clButton,.clButton:HOVER{
+	border: none !important;
+}
+
+
+td input[type="button"],td input[type="submit"],
+{
+	float: right;
+	margin: 5px 3px;
+}
+.radioBttn {
+	 left: 24px;
+    position: relative;
+    top: 8px;
+    vertical-align: top;
+}

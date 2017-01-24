@@ -1,0 +1,264 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="ts" uri="/WEB-INF/ts-tags.tld" %>
+<%@ page import="com.vydya.theschool.common.constants.TSConstants"%>
+<%@ page import="com.vydya.theschool.web.constants.WebConstants"%>
+
+<script defer="defer">
+	
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	
+		
+		
+		
+		$(document).on("click",".editlink",function(e){
+			var id = $(this).attr("id").split('_');
+			$("#eventForm #actionType").val("<%=WebConstants.VIEW%>");
+			$("#eventForm").attr("action", '<%=TSConstants.ACTION_EDIT%>.htm');
+			$('#eventForm #id').val(id[1]);
+			$("#eventForm").submit();
+		 });
+		
+		
+		
+		function deleteEvent(id){
+			if(confirm("Do you want to delete this Event?")){
+				
+				$('#eventForm #id').val(id);
+				$.post('delete.htm',$("#eventForm").serialize(),function(data){
+					if(data.success==true){
+						var div = $("div#event_"+id[1]);
+						div.css("background-color","#666666");
+						div.fadeOut(400,function(){
+							div.remove();
+						});
+						$(".message").empty().html("<font class='g'>"+data.message+"</font>");
+						return false;
+					}
+					else{
+						$(".message").empty().html("<font class='r'>"+data.errormsg+"</font>");
+					}
+				});
+				}
+			else{
+				return false;
+			}
+		}
+		
+		function editEvent(id){
+			$("#eventForm #actionType").val("<%=WebConstants.VIEW%>");
+			$("#eventForm").attr("action", '<%=TSConstants.ACTION_EDIT%>.htm');
+			$('#eventForm #id').val(id);
+			$("#eventForm").submit();
+		}
+		
+		
+		
+		$("#loadp").click(function() {
+			$.get('load.htm?t=p&p=1', function( data ) {
+				displayEvents(data,'p');
+			});
+		});
+		
+		loadNextEvents();
+		function loadNextEvents(){
+			var type ="n";
+			//loadEvents(type,0);
+			$.get('load.htm?t=n&p=0', function( data ) {
+				displayEvents(data,'n');
+			});
+		}
+		
+		function loadEvents(type,page){
+			$.get('load.htm?t='+type+'&p='+page, function( data ) {
+				displayEvents(data,type);
+			});
+		};
+		
+		
+		
+		function displayEvents(data,type){
+			
+			var id;
+			if(type=='n'){
+				id="#nextEvents";
+			}
+			else {
+				id="#prevEvents";
+			}
+			
+			$.each( data, function( key, item ) {
+				
+			     var div =  $( "<div/>", {
+				    "class": "allevents",
+				    html:'<span class="et"><h5>'+item.name+'</h5></span>'
+				  }).appendTo(id); 
+			   var items = [];
+			    $.each( item.eventlist, function( k, event ) {
+				   var button="";
+			    	var hmtl=  '<li class="event" id="event_'+event.id+'"><div class="ev"><div style="" class="nw-th-img">'+
+					  '<a href="${pageContext.servletContext.contextPath}/admin/manageEvents/view.htm?e='+event.id+'">'+
+							'<img class="" src="${pageContext.request.contextPath}/static/simg-fit/96x68/'+event.imageName+'"/></a></div>'+
+							'<table style="width: 78%"><tr><td><h5 class="eHeader"><a target="" href="${pageContext.servletContext.contextPath}/admin/manageEvents/view.htm?e='+event.id+'">'+event.title+'</a>'+
+							'</h5><h6 class="gyText1 eventDate" id="" >'+event.eventDateDis+'</h6></td></tr><tr><td><span id="" class="ncText6">'+event.title+'</span></td></tr></table></div>'+
+						'<div class="ed">';
+						if(event.editable==true){
+						button ='<input type="button" class="cms-btn gx-btn editlink" title="Edit" name="Edit" value="Edit" id="dl_'+event.id+'" />';
+						}
+						
+						var html2 = '<input type="button" class="cms-btn gx-btn deletelink" title="Delete" value="Delete"  name="Delete" id="edt_'+event.id+'" /></div></div></li>';
+						items.push(hmtl+button+html2);
+				  });
+			    
+			    $( "<ul/>", {
+				    "class": "events",
+				    html: items.join( "" )
+				  }).appendTo(div);
+			  });
+		}
+		
+		
+		 $('#addBttn').click(function(){
+				$('#addBttn').attr("disabled", true);
+				$("#eventForm #actionType").val("<%=WebConstants.VIEW%>");
+				$("#eventForm").attr("action", '<%=TSConstants.ACTION_ADD%>.htm');
+				$("#eventForm").submit();
+			}); 
+		
+		 
+		
+		function eventContains(id){
+			$(".inner-boundary").each(function(ind, value) { 
+				var eventV = $(this).attr("id").split('_');
+			   //alert('event ' + ind + ':' + $(this).attr('id')); 
+			   if(eventV[1]==id){
+				   return false;
+			   }
+			});
+			  return true;
+		}
+	});
+</script>
+<style>
+.ed{
+	
+}
+.ev{
+	padding-right: 5px;
+	overflow: auto;
+}
+
+.event .ev{
+	/* width: 280px; */
+	float: left;
+	width: 420px;
+	border-right: 1px solid #dedede;
+	}
+	.events{
+	overflow: auto;
+	
+	}
+	
+	.events .event{
+		padding: 5px;
+	border: 1px solid #E4E3E1;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+	background-color: #fff;
+	width: 555px;
+	display: inline-block;
+	margin: 3px;pu
+	}
+	.eventDate{
+	float: right;
+	}
+	.eHeader{
+		float: left;
+		display: inline;
+	}
+	.et h5{
+		padding: 1px;
+	}
+	.allevents{
+		padding: 10px 5px;
+	}
+</style>
+
+<div>
+
+<form:form name="eventForm" method="POST" commandName="eventForm" id="eventForm">
+	<form:input type="hidden" path="actionType" class="" id="actionType" />
+	<form:hidden path="id" value="" id="id" />
+	
+		<h1>Events</h1>
+		<p>School Events</p>
+		<div class="message"></div>
+		
+		<div id="" style="display: inline-block;">
+			<div class="">	<div><center><form:errors path="error" cssClass="alertMsg" /></center></div>
+							<c:if test='${null!=messagekey }'>
+								<div class="successMsg">
+									<spring:message code="${messagekey}" />
+									<c:remove var="success_key" scope="session" />
+								</div>
+							</c:if>
+							<c:remove var="messagekey" scope="session" />
+							<c:if test='${null!=success_key }'>
+								<div class="successMsg"><spring:message code="${success_key}" /></div>
+								<c:remove var="success_key" scope="session" />
+							</c:if></div>
+				<div class="">
+					<input type="button"  class="large clButton yellow" id="addBttn" title="Add" value="Add"/>
+					<%-- <ts:button validateAction="true" action="<%=WebConstants.ADD_GALLERY%>"  type="button"  
+					 id="addBttn" cssClass="large clButton yellow " name="Add" value="Add" title="Add" /> --%>
+				</div>
+					
+			</div>
+	
+		<%-- <div class="events">
+									<c:if test='${null!=events }'>
+										<c:forEach items="${events}" var="event" 	varStatus="catloop">
+												<div class="event" id="event_${event.id}">
+												<div class="ev"><div style="" class="nw-th-img"><a href="${pageContext.servletContext.contextPath}/admin/manageEvents/view.htm?e=${event.id}"">
+													<img class="" src="${pageContext.request.contextPath}/static/simg-fit/96x68/${event.imageName}" />
+													</a></div>
+													<table style="width: 90%">
+													<tr>
+													<td><h4 class="eHeader">
+														<a target="" href="${pageContext.servletContext.contextPath}/admin/manageEvents/view.htm?e=${event.id}">${event.title}</a>
+													</h4>
+													<h4 class="gyText1 eventDate" id="" >${event.eventDateDis}	</h4></td>
+													</tr>
+													<tr><td><span id="" class="ncText6">${event.title}</span></td></tr>
+													</table>
+												</div>
+												<div class="ed">
+												<c:if test='${event.editable==true }'>
+													<ts:button validateAction="true" action="<%=WebConstants.DELETE_EVENT%>" type="button" cssClass="cms-btn gx-btn deletelink" title="Delete" value="Delete" name="Delete" id="edt_${event.id}" />
+												</c:if>
+												<ts:button validateAction="true" action="<%=WebConstants.EDIT_EVENT%>" type="button" cssClass="cms-btn gx-btn editlink" title="Edit" name="Edit" value="Edit" id="dl_${event.id}" />
+												</div>
+												</div>
+												
+											</c:forEach>
+										</c:if>
+										</div>	 --%>
+										
+										<div id="nextEvents"> 
+										<div><h4 class="widget-title"><span>Upcoming Events</span></h4></div>
+										</div>
+										
+										<div id="prevEvents">
+											<div><h4 class="widget-title"><span>Previous Events </span></h4><a id ="loadp">load</a></div> 
+										</div>
+</form:form>
+
+</div>
+
+
+
+

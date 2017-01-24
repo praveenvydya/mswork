@@ -1,0 +1,155 @@
+#dark {
+    background-color: #333333;
+    border: 1px solid #000000;
+    margin-top: 20px;
+    padding: 10px;
+}
+#light {
+    background-color: #FFFFFF;
+    border: 1px solid #DEDEDE;
+    margin-top: 20px;
+    padding: 10px;
+	font-family: Arial;
+}
+li {
+    list-style: none outside none;
+  /*   padding-bottom: 10px;
+    padding-top: 10px; */
+}
+.clButton, .clButton:visited,.medium.clButton, .medium.clButton:visited  {
+    
+display: inline-block;
+min-width: 42px;
+border-radius: 4px;
+position: relative;
+padding: 4px 15px;
+margin: 10px 2px;
+color: #666;
+font-size: 12px;
+font-weight: 700;
+font-family: "helvetica neue", helvetica, arial, sans-serif;
+vertical-align: middle;
+text-decoration: none;
+text-align: center;
+text-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
+line-height: 22px;
+cursor: pointer;
+border: 0 !important;
+background: #ECECEC;
+zoom: 1;
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ececec),
+ color-stop(54%, #e6e6e6), color-stop(100%, #d2d2d2) );
+background-image: -webkit-linear-gradient(top, #ececec 0%, #e6e6e6 54%, #d2d2d2 100%);
+background-image: -moz-linear-gradient(top, #ececec 0%, #e6e6e6 54%, #d2d2d2 100%);
+background-image: -o-linear-gradient(top, #ececec 0%, #e6e6e6 54%, #d2d2d2 100%);
+background-image: -ms-linear-gradient(top, #ececec 0%, #e6e6e6 54%, #d2d2d2 100%);
+background-image: linear, top, #ececec 0%, #e6e6e6 54%, #d2d2d2 100%;
+box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0), inset 0 0 0 1px
+ rgba(0, 0, 0, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+-webkit-transition: all .1s linear;
+-moz-transition: all .1s linear;
+-o-transition: all .1s linear;
+transition: all .1s linear;
+-webkit-user-select: none;
+-moz-user-select: none;
+-o-user-select: none;
+user-select: none;
+outline: none;
+
+}
+
+.clButton:hover, .clButton-btn:focus {
+box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 2px 0 rgba(255, 255, 255, 0.5), 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.clButton:hover {
+    background-color: #111111;
+    color: #FFFFFF;
+}
+.clButton:active {
+    top: 1px;
+    background-color: #212121;
+}
+.small.clButton, .small.clButton:visited {
+    font-size: 11px;
+}
+.large.clButton, .large.clButton:visited,.gx-btn,.gx-btn:visited {
+    font-size: 14px;
+    padding: 10px 20px;
+    margin: 10px 3px;
+    float: right;
+}
+.super.clButton, .super.clButton:visited {
+    font-size: 34px;
+    padding: 8px 14px 9px;
+}
+.pink.clButton, .magenta.clButton:visited {
+    background-color: #E22092;
+}
+.pink.clButton:hover {
+    background-color: #C81E82;
+}
+.green.clButton, .green.clButton:visited {
+    background-color: #749A02;
+}
+.green.clButton:hover {
+    background-color: #91BD09;
+}
+.red.clButton, .red.clButton:visited {
+    background-color: #E62727;
+}
+.red.clButton:hover {
+    background-color: #CF2525;
+}
+.orange.clButton, .orange.clButton:visited {
+    background-color: #FF822d;
+}
+.orange.clButton:hover {
+    background-color: #fd9b5b;
+}
+.gray.clButton, .orange.clButton:visited {
+    background-color: #929292;
+}
+.gray.clButton:hover {
+    background-color: #ADADAD;
+}
+.blue.clButton, .blue.clButton:visited {
+    background-color: #2672ec;
+}
+.blue.clButton:hover {
+    background-color: #5a94f1;
+}
+.blue3.clButton, .blue.clButton:visited {
+    background-color: #2981E4;
+}
+.blue3.clButton:hover {
+    background-color: #2575CF;
+}
+.yellow.clButton, .yellow.clButton:visited {
+    background-color: #FC9200;
+}
+.yellow.clButton:hover {
+    background-color: #FFB515;
+}
+
+.blue2.clButton, .blue2.clButton:visited {
+    background-color: #007D9A;
+}
+.blue2.clButton:hover {
+    background-color: #2DAEBF;
+}
+.clButton,.clButton:HOVER{
+	border: none !important;
+}
+
+
+td input[type="button"],td input[type="submit"],
+{
+	float: right;
+	margin: 5px 3px;
+}
+.radioBttn {
+	 left: 24px;
+    position: relative;
+    top: 8px;
+    vertical-align: top;
+}

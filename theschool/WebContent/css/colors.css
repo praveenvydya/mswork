@@ -1,0 +1,131 @@
+.bs-docs-sidenav,.listRight {
+	background-color: #F9F9F9;
+	border-radius: 0px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+	margin: 0px;
+	padding: 0;
+}
+
+body {
+	color: #444444;
+	font-family:wf_segoe-ui_normal,"Segoe UI","Segoe WP",Tahoma,Arial,sans-serif; /* 'Open Sans', sans-serif; */
+	word-wrap: break-word;
+}
+
+
+.cncat {
+	padding: 6px 12px;
+	background-color:#00ABEC;
+	
+	/* background: url("../images/arrows-rounds.png") no-repeat scroll 165px -2px #00ABEC;
+	cursor: pointer; */
+}
+.navcat0{
+	/* background-color: #00ABEC; */
+	color: #FFFFFF;
+	text-transform: capitalize;
+	font-weight: bold;
+	}
+.navcat1{
+	background-color: #00ABEC;
+	color: #FFFFFF;
+	}
+	
+.navcat2{
+	background-color: #89C402;
+	color: #FFFFFF;
+	}
+		
+	.navcat3{
+	background-color: #DD5900;
+	color: #FFFFFF;
+	}	
+	
+	
+	.navcat4{
+	background-color: #DEDEDE;
+	color: #666666;
+	}
+	
+/* 		
+	
+.span12 {
+	width: 200px;
+}
+ */
+.nav {
+	list-style: none outside none;
+}
+
+.bs-docs-sidenav>li>a {
+	border-top: 1px dotted #E5E5E5;
+	display: block;
+	font-size: 11px;
+	margin: 0 0 -1px;
+	padding: 6px 12px;
+	background-color: #fff;
+}
+
+a {
+	color: #0088CC;
+	text-decoration: none;
+}
+
+.badge,.label {
+	font-size: 11px;
+}
+
+.pull-right {
+	float: right;
+}
+
+.label-info,.badge-info {
+	background-color: #3A87AD;
+}
+
+.label,.badge {
+	background-color: #999999;
+	color: #FFFFFF;
+	display: inline-block;
+	font-size: 11.844px;
+	font-weight: bold;
+	line-height: 14px;
+	padding: 2px 4px;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	vertical-align: baseline;
+	white-space: nowrap;
+}
+
+/* .bs-docs-sidenav>li:first-child>a {
+	border-radius: 0 6px 0 0
+} */
+.bs-docs-sidenav>.active>a {
+	border: 0 none;
+	box-shadow: 1px 0 0 rgba(0, 0, 0, .1) inset, -1px 0 0 rgba(0, 0, 0, .1)
+		inset;
+	position: relative;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+	z-index: 2;
+	padding: 9px 15px
+}
+
+/* .bs-docs-sidenav .icon-chevron-right {
+	float: right;
+	margin-right: -6px;
+	margin-top: 2px;
+	opacity: .25
+} */
+.bs-docs-sidenav>li>a:hover {
+	background-color: #f9f9f9;
+}
+
+
+
+/* arrow buttons */
+
+.ar-w-bk{
+	width: 30px;
+	height: 34px;
+	background:url("../images/arrows-rounds.png") no-repeat 6px -215px;
+	padding-left: 42px !important;
+}

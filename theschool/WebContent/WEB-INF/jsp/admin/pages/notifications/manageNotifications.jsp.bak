@@ -1,0 +1,141 @@
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="ts" uri="/WEB-INF/ts-tags.tld"%>
+<%@ page import="com.vydya.theschool.web.constants.WebConstants"%>
+<%@ page import="com.vydya.theschool.common.constants.TSConstants"%>
+<script type="text/javascript"
+	src="<spring:message code="static.application.name"/>/javascript/jquery.tablednd.js"></script>
+	
+	<script type="text/javascript">  
+	jQuery(document).ready(function($){
+	
+		
+		//$("#sectionsTable").tablesorter({widthFixed: true, widgets: ['applyStyles']});
+		 $('#addBttn').click(function(){
+				
+				$('#addBttn').attr("disabled", true);	
+				$("#notificationForm").attr("action", '<%=TSConstants.ACTION_ADD%>.htm');
+				$("#notificationForm").submit();
+			});  
+		 
+			  $("#editBttn").click(function() {
+					if($(".notificationId").is(':checked')==true){
+						$('#notificationForm #actionType').val("<%=WebConstants.VIEW%>");
+						$("#notificationForm").attr("action","<%=TSConstants.ACTION_EDIT%>.htm");
+						$("#notificationForm").submit();
+					}
+					else{
+						alert("Please Select One");
+						return false;
+					}
+				});
+			  $("#deleteBttn").click(function() {
+					if($(".notificationId").is(':checked')==true){
+						$("#notificationForm").attr("action","<%=TSConstants.ACTION_DELETE%>.htm");
+						$("#notificationForm").submit();
+					}
+					else{
+						alert("Please Select One");
+						return false;
+					}
+				}); 
+			  
+			  $('.message font').fadeIn().delay(5000).fadeOut();
+				 $('.successMsg').fadeIn().delay(5000).fadeOut();
+	});
+	</script>
+
+	
+<form:form method="POST" commandName="notification" name="notificationForm" id="notificationForm">
+		<form:input type="hidden" path="actionType" value="view"/>
+		
+			<table>
+			<tr>
+					<td class="" colspan="4"></td>
+					<td><input type="button"  class="large clButton yellow" id="addBttn" title="Add" value="Add"/></td>
+				</tr>
+			</table>
+			
+			
+	<div id="tabularData">
+		<div id="titleBar">
+			<div class="title">Available Notifications</div>
+			<%-- <div class="addSectionBttn">
+				<ts:button validateAction="true"
+					action="<%=WebConstants.ADD_COLUMNCONTENT%>" type="button" id="addBttn"
+					cssClass="button3d_blue " name="AddSection" value="Add Section"
+					title="Add Section" />
+					<button type="" class="add" id="addBttn" title="Add">Add Column Content</button>
+			</div> --%>
+		</div>
+		<c:if test='${null!=success_key }'>
+			<div class="successMsg">
+				<spring:message code="${success_key}" />
+			</div>
+			<c:remove var="success_key" scope="session" />
+		</c:if>
+		<div>
+			<center>
+				<form:errors path="error" cssClass="alertMsg" />
+			</center>
+		</div>
+		<%-- <form:hidden path="reorderedIds" id="reorderedIds" /> --%>
+		<form:hidden path="actionName" id="actionName" />
+		<c:if test='${null!=notificationList }'>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			id="sectionsTable">
+			<thead>
+			<tr>
+				<th width="">&nbsp;</th>
+				<th width="">Name</th>
+				<!-- <th width="">Content</th> -->
+				<th width="">Description</th>
+				<th width="">Category</th>
+				<th width="">Status</th>
+				<th width="">Inserted/By</th>
+				<th width="">Updated/By</th>
+				
+				
+			</tr>
+	</thead>
+		<tbody>	<c:forEach items="${notificationList}" var="notification"
+				varStatus="loop"> <%-- begin="0" end="0" step="1" --%>
+				<tr>
+					<td width="2%" style="text-align:center"><form:radiobutton  path="id" id="${notification.id}" value="${notification.id}" class="notificationId"  name="notificationId"/></td>
+					<td width="">
+					<a
+						href="${pageContext.request.contextPath}/notification/${notification.url}" target="_blank"><span class="fileIcon"><span class="fileType ${notification.fileType}f"></span></span>${notification.name}</a>
+					</td>
+					<!-- <td width="">
+										
+									</td> -->
+					<td width="">${notification.description}</td>
+					<td width="">${notification.category}</td>
+					<c:choose>
+						<c:when test="${1 eq notification.active}">
+							<td class="center status-active">Active</td>
+					</c:when>
+						<c:otherwise>
+								<td class="center status-inactive">Inactive</td>
+						</c:otherwise>
+					</c:choose>	
+					<td width="">${notification.inserted}/<br>${notification.insertedby}</td>
+					<td width="">${notification.lastmodified}/<br>${notification.lastmodifiedby}</td>
+				</tr>
+			</c:forEach>
+			
+			<tr><td colspan="8">
+			<%-- <ts:button validateAction="true" action="<%=WebConstants.EDIT_HOMEPAGE_IMAGES%>"   type="submit" cssClass="editBttn" name="Edit" value=""  />
+					<ts:button validateAction="true" action="<%=WebConstants.DELETE_HOMEPAGE_IMAGES%>"    type="submit" cssClass="deleteBttn" name="Delete" value=""  />
+					 --%>
+						<input type="button"  class="large clButton yellow" id="editBttn" title="Back" value="Edit"/>
+						<input type="button"  class="large clButton green" id="deleteBttn" title="Delete" value="Delete"/>
+			</td></tr>
+		</tbody></table>
+		
+		</c:if>
+	</div>
+	
+</form:form>

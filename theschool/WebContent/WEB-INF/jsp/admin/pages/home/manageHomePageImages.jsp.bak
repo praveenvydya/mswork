@@ -1,0 +1,258 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="ts" uri="/WEB-INF/ts-tags.tld" %>
+<%@ page import="com.vydya.theschool.common.constants.TSConstants"%>
+<%@ page import="com.vydya.theschool.web.constants.WebConstants"%>
+
+<style>
+
+
+input[type="radio"] {
+    visibility: visible;
+}
+.img{
+	padding: 5px;
+}
+.radioRound {
+	width: 28px !important;
+	height: 28px !important;
+	background: #fcfff4;
+	padding:0px !important;
+	min-height:0px !important;
+	background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+	margin: -15px auto;
+
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+
+	-webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	position: relative;
+}
+.radioRound label {
+	cursor: pointer;
+	position: absolute;
+	width: 20px !important;
+	height: 20px;
+
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	left: 4px;
+	top: 4px;
+
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+
+	background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+	background: linear-gradient(top, #222 0%, #45484d 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+}
+
+.radioRound label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background: #00bf00;
+
+	background: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
+	background: -moz-linear-gradient(top, #00bf00 0%, #009400 100%);
+	background: -o-linear-gradient(top, #00bf00 0%, #009400 100%);
+	background: -ms-linear-gradient(top, #00bf00 0%, #009400 100%);
+	background: linear-gradient(top, #00bf00 0%, #009400 100%);
+
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	top: 2px;
+	left: 2px;
+
+	-webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+}
+
+.radioRound label:hover::after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+
+.radioRound input[type=radio]:checked + label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+</style>
+	<script type="text/javascript">  
+	jQuery(document).ready(function($){
+	
+	<%-- 	$("#addHomeImage").click(function() {
+			$("#homePageImageForm").attr("action","<%=TSConstants.ACTION_ADD_HOMEPAGE_IMAGES%>.htm");
+			$("#homePageImageForm").submit();
+		});  --%>
+		
+		$("a[rel=homeImage_group]").fancybox({
+			
+			prevEffect : 'none',
+			nextEffect : 'none',
+			openEffect:'elastic',
+			closeEffect:'elastic',
+			helpers : {
+				overlay : {
+					closeClick : false
+				}
+			}
+		});
+		
+		 $('#addBttn').click(function(){
+				$('#addBttn').attr("disabled", true);
+				$("#homePageImageForm #actionType").val("<%=WebConstants.VIEW%>");
+				$("#homePageImageForm").attr("action", '<%=TSConstants.ACTION_ADD%>.htm');
+				$("#homePageImageForm").submit();
+			}); 
+		
+		$("#sectionBttns").css("float","none");
+		$("#editBttn").click(function() {
+			if($(".pageId").is(':checked')==true){
+				$('#homePageImageForm #actionType').val("<%=WebConstants.VIEW%>");
+				$("#homePageImageForm").attr("action","<%=TSConstants.ACTION_EDIT%>.htm");
+				$("#homePageImageForm").submit();
+			}
+			else{
+				alert("Please Select One");
+				return false;
+			}
+		}); 
+		
+		$("#deleteBttn").click(function() {
+			if($(".pageId").is(':checked')==true){
+				$("#homePageImageForm").attr("action","<%=TSConstants.ACTION_DELETE%>.htm");
+				$("#homePageImageForm").submit();
+			}
+			else{
+				alert("Please Select One");
+				return false;
+			}
+		}); 
+		
+	});
+	</script>
+	
+	
+
+<div id="tabularData">
+	
+	<c:if test='${null!=success_key }'>
+		<div class="successMsg">
+			<spring:message code="${success_key}" />
+		</div>
+		<c:remove var="success_key" scope="session" />
+	</c:if>
+		
+	
+	<div class="successMsg" id="status_success">
+			
+	</div>
+	<div class="errormsg" id="status_fail" style="padding-left: 15px;">
+			
+		</div>
+
+<div id="">
+<form:form name="homePageImageForm" method="POST" commandName="homePageImageForm" id="homePageImageForm">
+<form:input type="hidden" path="actionType" class="" id="actionType" />
+
+<c:if test='${null!=homePageImagesList }'>
+<div class="tableLimiter">	
+
+<div id="titleBar">
+	<div class="title">	Home Page Images</div>
+
+<div class="">
+						<%-- <form  name="addHomePageImagesForm" id="addHomePageImagesForm" method="GET">
+						<ts:button validateAction="true" action="<%=WebConstants.ADD_HOMEPAGE_IMAGES%>" type="button" cssClass="addBttn_yellowText" title="Add Home Page Image" id="addHomeImage"/>
+						</form> 
+						<td><button type="" class="add" id="addBttn" title="Add">Add</button></td>--%>
+						<td><input type="button"  class="large clButton yellow" id="addBttn" title="Add" value="Add"/></td>
+						
+					</div>
+</div>
+		<c:choose>
+			<c:when test="${empty homePageImagesList}">
+				<div class="alertMsg">No Pages Found</div>
+			</c:when>
+			<c:otherwise>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0"
+					id="sectionsTable">
+					<thead>
+						<tr>
+							<th width="15%">Image</th>
+							<th width="15%">Description</th>
+							<th width="14%">Title</th>
+							<th width="10%">Title Position</th>
+							<th colspan="1" rowspan="1">Inserted</th>
+							<th colspan="1" rowspan="1">Inserted By</th>
+							<th colspan="1" rowspan="1">Updated</th>
+							<th colspan="1" rowspan="1">Updated By</th>
+						</tr>
+					</thead>
+					
+				<c:forEach var="page" items="${homePageImagesList}">
+					<tr>
+						<td>
+						
+						<%-- <div class="radioRound radioBttn">
+							  <form:radiobutton  path="id" id="${page.id}" value="${page.id}" class="pageId" name="pageId"  />
+							<label for="radioRound "></label>
+						  </div> --%>
+							  <form:radiobutton  path="id" id="${page.id}" value="${page.id}" class="pageId radioBttn" name="pageId"  />
+						<a  title="${page.description}"
+						href="${pageContext.request.contextPath}/static/simg-org/${page.imageName}"
+						rel="homeImage_group">
+							<img class="std-thumb" src="${pageContext.request.contextPath}/static/simg-fit/107x72/${page.imageName}" />
+					</a></td>
+						<td>${page.description}</td>
+						<td>${page.imageTitle}</td>
+						<td>${page.titlePosition}</td>
+						<td class="center ">${page.inserted}</td>
+						<td class="center ">${page.insertedby}</td>
+						<td class="center ">${page.lastmodified}</td>
+						<td class=" center ">${page.lastmodifiedby}</td>
+					</tr>
+					</c:forEach>
+				</table>
+				
+			</c:otherwise>
+		</c:choose>
+		</div>
+		
+		<div id="sectionBttns">
+				<ts:button validateAction="true" action="<%=WebConstants.DELETE_HOMEPAGE_IMAGES%>" type="button" cssClass="cms-btn gx-btn" title="Delete" value="Delete" name="Delete" id="deleteBttn" />
+				<ts:button validateAction="true" action="<%=WebConstants.EDIT_HOMEPAGE_IMAGES%>" type="button" cssClass="cms-btn gx-btn" title="Edit" name="Edit" id="editBttn" value="Edit" />
+		</div>
+		
+		
+					 
+		</c:if>	
+		
+		
+		</form:form>
+</div>

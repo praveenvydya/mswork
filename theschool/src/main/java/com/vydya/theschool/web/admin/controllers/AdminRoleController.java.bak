@@ -1,0 +1,386 @@
+
+package com.vydya.theschool.web.admin.controllers;
+
+import java.util.List;
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.vydya.theschool.common.constants.ErrorConstants;
+import com.vydya.theschool.common.constants.TSConstants;
+import com.vydya.theschool.common.dto.Role;
+import com.vydya.theschool.common.dto.Section;
+import com.vydya.theschool.common.exceptions.ApplicationException;
+import com.vydya.theschool.common.exceptions.ServiceException;
+import com.vydya.theschool.common.types.RoleType;
+import com.vydya.theschool.services.api.permisions.ManageRoleService;
+import com.vydya.theschool.web.constants.WebConstants;
+import com.vydya.theschool.web.validator.RoleValidator;
+
+@Controller
+public class AdminRoleController {
+	private static final Logger log = Logger.getLogger(AdminRoleController.class.getName());
+
+	RoleValidator roleValidator;
+
+	@Autowired
+	public AdminRoleController(RoleValidator roleValidator) {
+		this.roleValidator = roleValidator;
+	}
+
+	@Autowired
+	protected ManageRoleService manageRoleService;
+
+	
+	public AdminRoleController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	List<Section> sectionList = null;
+
+	/**Add scenario
+	 * This method binds the command object to the model
+	 * This method is used to invoke validator with the  provided details if no errors occurs invokes 
+	 * the service method after execution returns next tiles view to display,if errors occurs returns 
+	 * to the same view	
+	 * @param 
+	 * @return 
+	 */   
+	@RequestMapping(value = WebConstants.ADD_ROLE_ACTION)
+	public String addProcess(ModelMap model,
+			@ModelAttribute(value = "role") Role role,
+			BindingResult result, HttpSession session, SessionStatus status) {		
+		
+		ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
+		Locale locale = (Locale)session.getAttribute(WebConstants.SESSION_USER_LOCALE);
+		String userName = (String) session.getAttribute(WebConstants.SESSION_USER_NAME);	
+		
+		if ((null != role) && (TSConstants.ADDVIEW.equals(role.getActionName()))) {
+
+			log.debug("New Role initialised");			
+			try {
+				populateData(model, session,role);					
+				return WebConstants.VIEW_NAME_ADD_ROLE;
+			}
+			catch (ServiceException e) {
+				model.addAttribute("role", role);				
+				String msg = ctx.getMessage(e.getErrorCode(),new Object[] { }, locale);
+				result.rejectValue("error","",msg.concat(String.valueOf(e.getUniqueId())));
+				return WebConstants.VIEW_NAME_ADD_ROLE;							
+					
+			} 
+			catch (Exception e) {
+				
+				String msg = ctx.getMessage(ErrorConstants.TS_4010,new Object[] { }, locale);
+				ApplicationException exp = new ApplicationException( e.getMessage(),e);
+				log.error(exp,e);
+				model.addAttribute("role", role);				
+				result.rejectValue("error","",msg.concat(String.valueOf(exp.getUniqueId())));			
+				return WebConstants.VIEW_NAME_ADD_ROLE;
+			}
+		} 
+		else {
+			
+			try {
+				
+				roleValidator.validate(role, result);
+				if (result.hasErrors()) {
+					populateData(model, session, role);						
+					log.debug("Role data having errors");
+					return WebConstants.VIEW_NAME_ADD_ROLE;
+				}
+			String roleName = manageRoleService.checkForDuplicateRole(role);
+			if((null != roleName)&&(!roleName.isEmpty())){
+				populateData(model, session, role);				
+				StringBuilder errMsg = new StringBuilder().append(roleName).append(TSConstants.DUPLICATE_ROLE_PERMISSION);
+				result.rejectValue("error",roleName+" "+ErrorConstants.TS_4019 ,errMsg.toString());				
+				return WebConstants.VIEW_NAME_ADD_ROLE;
+			}
+				manageRoleService.createNewRole(role, userName);
+				if(Boolean.parseBoolean(role.getUserRoleRequired())){
+					role.setRoleName(TSConstants.EMPTY);					
+					role.setAdminRoleFlag(TSConstants.IA_ROLE_CREATED);
+					role.setUserRoleRequired(TSConstants.FALSE);
+					role.setRoleDescription(TSConstants.EMPTY);
+					role.setRoleType(RoleType.USER.toString());
+					populateData(model, session, role);
+				session.setAttribute(WebConstants.SESSION_SUCCESS_MESSAGE, ErrorConstants.TS_4014);				
+				return WebConstants.VIEW_NAME_ADD_ROLE;
+				}
+				else{
+					session.setAttribute(WebConstants.SESSION_SUCCESS_MESSAGE, ErrorConstants.TS_4024);
+				}
+				
+			} catch (ServiceException e) {	
+				String msg = ctx.getMessage(e.getErrorCode(),new Object[] { }, locale);
+				try{
+				populateData(model, session, role);
+				}
+				catch(ServiceException e1){}
+					if(ErrorConstants.TS_4003.equals(e.getErrorCode()))									
+					result.rejectValue("error","",msg.concat(String.valueOf(e.getUniqueId())));
+					else
+					result.rejectValue("error","",msg.concat(String.valueOf(e.getUniqueId())));
+					return WebConstants.VIEW_NAME_ADD_ROLE;
+				
+			} catch (Exception e) {
+				try{
+				populateData(model, session, role);
+				}
+				catch(ServiceException e1){}
+				String msg = ctx.getMessage(ErrorConstants.TS_4010,new Object[] { }, locale);
+				ApplicationException exp = new ApplicationException( e.getMessage(),e);
+				log.error(exp,e);
+				model.addAttribute("role", role);				
+				result.rejectValue("error","",msg.concat(String.valueOf(exp.getUniqueId())));	
+				return WebConstants.VIEW_NAME_ADD_ROLE;
+			}			
+
+			return WebConstants.REDIRECT_VIEW_ROLES;
+		}
+		
+	}
+	
+	private void populateData(ModelMap model,HttpSession session,Role role) throws ServiceException 
+	{
+		Integer roleId = (Integer) session.getAttribute(WebConstants.SESSION_ADMIN_ROLE_ID);
+		RoleType roleType = (RoleType) session.getAttribute(WebConstants.SESSION_USER_ROLE_TYPE);
+		
+		if(RoleType.PA == roleType){
+			sectionList = manageRoleService.getPATreeDetails();
+		}else{
+			sectionList = manageRoleService.getIATreeOrMenuDetails(roleId,null,false);
+		}
+		role.setSections(sectionList.toArray(new Section[sectionList.size()]));		
+		role.setStatus(TSConstants.EMPTY);
+		if((null == sectionList)||(sectionList.size()==0))
+			session.setAttribute(WebConstants.SESSION_ALERT_MESSAGE, ErrorConstants.TS_4025);
+		model.addAttribute("role", role);		
+	}
+	
+	/**Search scenario
+	 * This method to get all the Roles which matches the search criteria
+	 *	adds them to the model
+	 * @param 
+	 * @return 
+	 */   
+	@RequestMapping(value = WebConstants.VIEW_ROLES_ACTION)
+	public String initManageRoles(ModelMap model,@ModelAttribute(value = "role") Role role,
+			BindingResult result,  HttpSession session,HttpServletResponse  response) {
+		
+		ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
+		Locale locale = (Locale)session.getAttribute(WebConstants.SESSION_USER_LOCALE);
+		
+		log.debug("Manage Roles initialised");
+		Integer roleId = (Integer) session.getAttribute(WebConstants.SESSION_ADMIN_ROLE_ID);
+		RoleType roleType = (RoleType) session.getAttribute(WebConstants.SESSION_USER_ROLE_TYPE);		
+		try {
+			role.setRoleType(roleType.toString());
+			role.setRoleId(roleId);
+			/*if(exportUtil.isExportRequest(role))
+			{
+				exportUtil.genarateExportData(role, manageRoleService,response);	
+				return null;
+			}
+			else
+			{
+				paginationUtil.genaratePagination(role,model,manageRoleService);
+			}*/
+			List<Role> entityList = manageRoleService.getEntitiesByCriteria(role);
+			model.addAttribute("searchResults", entityList);		
+			log.debug("Manage Roles initialised  ");			
+			model.addAttribute("role", role);		
+		} 
+		catch (ServiceException e) {
+			
+			log.error(TSConstants.DATAACCESSERROR, e);		
+			model.addAttribute("role", role);
+			String msg = ctx.getMessage(e.getErrorCode(),new Object[] { }, locale);
+			result.rejectValue("error","",msg.concat(String.valueOf(e.getUniqueId())));			
+			return WebConstants.VIEW_NAME_VIEW_ROLES;
+		} 
+		catch (Exception e) {
+			
+			String msg = ctx.getMessage(ErrorConstants.TS_4010,new Object[] { }, locale);
+			ApplicationException exp = new ApplicationException( e.getMessage(),e);
+			log.error(exp,e);
+			model.addAttribute("role", role);
+			result.rejectValue("error","",msg.concat(String.valueOf(exp.getUniqueId())));	
+			return WebConstants.VIEW_NAME_VIEW_ROLES;
+		}
+		return WebConstants.VIEW_NAME_VIEW_ROLES;
+	}
+	
+	private void populateEditData(ModelMap model,HttpSession session,Role role) throws ServiceException 
+	{
+		Integer roleId = (Integer) session.getAttribute(WebConstants.SESSION_ADMIN_ROLE_ID);
+		RoleType roleType = (RoleType) session.getAttribute(WebConstants.SESSION_USER_ROLE_TYPE);
+		boolean assigned = manageRoleService.isRoleAssigned(role.getSelectedRoleId());
+		if(RoleType.PA == roleType){
+			sectionList = manageRoleService.getPATreeDetails();
+		}else{
+			sectionList = manageRoleService.getIATreeOrMenuDetails(roleId,null,false);
+		}
+		role.setRoleAssigned(assigned);
+		 role = manageRoleService.getActionsAssignedToRole(role);
+		role.setSections(sectionList.toArray(new Section[sectionList.size()]));		
+		if((null == sectionList)||(sectionList.size()==0))
+			session.setAttribute(WebConstants.SESSION_ALERT_MESSAGE, ErrorConstants.TS_4026);
+		model.addAttribute("role", role);		
+	}
+	
+	private void populateEmptyTreeEditData(ModelMap model,HttpSession session,Role role) throws ServiceException 
+	{
+		Integer roleId = (Integer) session.getAttribute(WebConstants.SESSION_ADMIN_ROLE_ID);
+		RoleType roleType = (RoleType) session.getAttribute(WebConstants.SESSION_USER_ROLE_TYPE);
+		boolean assigned = manageRoleService.isRoleAssigned(role.getSelectedRoleId());
+		if(RoleType.PA == roleType){
+			sectionList = manageRoleService.getPATreeDetails();
+		}else{
+			sectionList = manageRoleService.getIATreeOrMenuDetails(roleId,null,false);
+		}
+		role.setRoleAssigned(assigned);
+		if((null == sectionList)||(sectionList.size()==0))
+			session.setAttribute(WebConstants.SESSION_ALERT_MESSAGE, ErrorConstants.TS_4026);
+		role.setSections(sectionList.toArray(new Section[sectionList.size()]));						
+		model.addAttribute("role", role);		
+	}
+	/**Edit scenario
+	 * This method gets the selected Role from the model with respective Entitlements
+	 * This method is used to invoke validator with the  provided details if no errors occurs invokes 
+	 * the service method after execution returns next tiles view to display,if errors occurs returns 
+	 * to the same view	
+	 * @param 
+	 * @return 
+	 */
+	@RequestMapping(value = WebConstants.EDIT_ROLE_ACTION)	
+	public String editProcess(ModelMap model,
+			@ModelAttribute(value = "role") Role role,
+			BindingResult result, HttpSession session, SessionStatus status) {	
+		ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
+		Locale locale = (Locale)session.getAttribute(WebConstants.SESSION_USER_LOCALE);
+			
+		String userName = (String) session.getAttribute(WebConstants.SESSION_USER_NAME);
+		try {
+			
+			if ((null != role)&&  (TSConstants.EDITVIEW.equals(role.getActionName()))) {
+				
+				log.debug("editProcess Selected RoleID " + role.getSelectedRoleId());
+				if ((null != role.getSelectedRoleId())&& (!role.getSelectedRoleId().isEmpty())){
+					
+					populateEditData(model, session, role);	
+					
+				}
+
+				return WebConstants.VIEW_NAME_EDIT_ROLE;
+				
+			} 
+			else {				
+				roleValidator.validate(role, result);
+				if (result.hasErrors()) {
+					role.setSelectedRoleId(String.valueOf(role.getRoleId()));
+					populateEmptyTreeEditData(model, session, role);					
+					log.debug("Role data having errors");
+					return WebConstants.VIEW_NAME_EDIT_ROLE;
+				}
+				String roleName = manageRoleService.checkForDuplicateRole(role);
+				if((null != roleName)&&(!roleName.isEmpty())){
+					role.setSelectedRoleId(String.valueOf(role.getRoleId()));
+					populateEditData(model, session, role);
+					StringBuilder errMsg = new StringBuilder().append(roleName).append(TSConstants.DUPLICATE_ROLE_PERMISSION);
+					result.rejectValue("error",roleName+" "+ErrorConstants.TS_4019 ,errMsg.toString());				
+					return WebConstants.VIEW_NAME_EDIT_ROLE;
+				}
+				log.debug("Edit Role getRoleId  "+role.getRoleId());
+				manageRoleService.updateRole(role, userName);				
+				
+				session.setAttribute(WebConstants.SESSION_SUCCESS_MESSAGE, ErrorConstants.TS_4015);
+				return WebConstants.REDIRECT_VIEW_ROLES;
+			}
+		} 
+		catch (ServiceException e) {
+			String msg = ctx.getMessage(e.getErrorCode(),new Object[] { }, locale);
+			try{
+				role.setSelectedRoleId(String.valueOf(role.getRoleId()));
+			populateEditData(model, session, role);
+			}catch(ServiceException e1){}
+				if(ErrorConstants.TS_4003.equals(e.getErrorCode()))									
+					result.rejectValue("rolename","",msg.concat(String.valueOf(e.getUniqueId())));
+				else
+					result.rejectValue("error","",msg.concat(String.valueOf(e.getUniqueId())));		
+				return WebConstants.VIEW_NAME_EDIT_ROLE;
+			
+		} 
+		catch (Exception e)
+		{
+			try{
+				role.setSelectedRoleId(String.valueOf(role.getRoleId()));
+				populateEditData(model, session, role);
+			}catch(ServiceException e1){}
+			String msg = ctx.getMessage(ErrorConstants.TS_4010,new Object[] { }, locale);
+			ApplicationException exp = new ApplicationException( e.getMessage(),e);
+			log.error(exp,e);
+			result.rejectValue("error","",msg.concat(String.valueOf(exp.getUniqueId())));
+			return WebConstants.VIEW_NAME_EDIT_ROLE;
+		}
+	}
+
+	/**Delete scenario
+	 * This method gets the selected RoleId from the model and deletes the role 
+	 *if errors occurs returns 
+	 * to the same view	
+	 * @param 
+	 * @return 
+	 */   	
+	@RequestMapping(value = WebConstants.DELETE_ROLE_ACTION)
+	public String initDeleteSection(
+			@ModelAttribute(value = "role") Role role,
+			BindingResult result, HttpSession session, SessionStatus status,
+			ModelMap model) {
+		
+		ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
+		Locale locale = (Locale)session.getAttribute(WebConstants.SESSION_USER_LOCALE);
+
+		log.debug("Delete Role getRoleId GET initialised "+ role.getSelectedRoleId());
+		String userName = (String) session.getAttribute(WebConstants.SESSION_USER_NAME);
+		try {
+
+			boolean assigned = manageRoleService.isRoleAssigned(role.getSelectedRoleId());
+			if(assigned){
+				session.setAttribute(WebConstants.SESSION_ALERT_MESSAGE, ErrorConstants.TS_4017);
+				 return WebConstants.REDIRECT_VIEW_ROLES;
+			}
+			manageRoleService.deleteRole(role.getSelectedRoleId(),userName);				
+			session.setAttribute(WebConstants.SESSION_SUCCESS_MESSAGE, ErrorConstants.TS_4016);
+
+		} catch (ServiceException e) {
+			
+			result.rejectValue("error",e.getErrorCode());			
+			 return WebConstants.REDIRECT_VIEW_ROLES;
+			 
+		} catch (Exception e) {
+			
+			String msg = ctx.getMessage(ErrorConstants.TS_4010,new Object[] { }, locale);
+			ApplicationException exp = new ApplicationException( e.getMessage(),e);
+			log.error(exp,e);
+			result.rejectValue("error","",msg.concat(String.valueOf(exp.getUniqueId())));
+			return WebConstants.REDIRECT_VIEW_ROLES;
+		}
+		return WebConstants.REDIRECT_VIEW_ROLES;
+	}
+
+	
+}
